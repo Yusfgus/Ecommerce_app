@@ -48,7 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 style: TextStyle(
                   fontSize: 30.0,
                   fontFamily: 'LilitaOne',
-                  color: Color(0xFF0B181A),
+                  color: Color(0xFF3A2A08),
                 ),
               ),
               SizedBox(
@@ -90,15 +90,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 },
                 sufIcon: isPassword ? Icons.visibility : Icons.visibility_off,
               ),
-              CheckboxListTile(
-                title: const Text("Remember me"),
-                value: isChecked,
-                onChanged: (bool? value) {
-                  setState(() {
-                    isChecked = value!;
-                  });
-                },
-                controlAffinity: ListTileControlAffinity.leading,
+              Padding(
+                padding: const EdgeInsetsDirectional.only(
+                  start: 14.0,
+                ),
+                child: CheckboxListTile(
+                  title: const Text("Remember me"),
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                  controlAffinity: ListTileControlAffinity.leading,
+                ),
               ),
               SizedBox(
                 height: 50.0,
@@ -113,7 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 text: 'Sign up',
                 textColor: Colors.white,
                 haveBorder: true,
-                containerColor: Color(0xFFFFB500),
+                containerColor: Color(0xFFF3B812),
               ),
               SizedBox(
                 height: 20.0,
@@ -122,10 +127,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               defaultMaterialButton(
                 valid: () {},
                 text: 'Sign up with Google',
-                borderColor: Color(0xFF005C6C),
+                borderColor: Color(0xFF3A2A08),
                 containerColor: Colors.white,
                 haveBorder: true,
-                textColor: Color(0xFF005C6C),
+                textColor:Color(0xFF3A2A08),
                 isGoogle: true,
               ),
               Row(
@@ -134,7 +139,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Text(
                     'already have account?...',
                     style: TextStyle(
-                      color: Color(0xFF005C6C),
+                      color:Color(0xFF3A2A08),
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   TextButton(
@@ -145,8 +151,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 builder: (context) => LoginScreen()));
                       },
                       child: Text(
-                        'Login',
-                        style: TextStyle(color: Color(0xFFFFB500)),
+                        'Log in',
+                        style: TextStyle(color: Color(0xFFF3B812)),
                       )),
                 ],
               ),

@@ -60,10 +60,10 @@ class WelcomeScreen extends StatelessWidget {
                             builder: (context) => RegisterScreen()));
                   },
                   text: 'Sign up',
-                  borderColor: Color(0xFF005C6C),
+                  borderColor: Color(0xFF3A2A08),
                   containerColor: Colors.white,
                   haveBorder: true,
-                  textColor:  Color(0xFF005C6C),
+                  textColor: Color(0xFF3A2A08),
                 ),
                 SizedBox(
                   height: 20.0,

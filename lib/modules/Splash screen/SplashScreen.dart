@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Color(0xFFFFB500),
+            color: Color(0xFFF3B812),//F3B812
             borderRadius: BorderRadius.circular(40.0),
             boxShadow: [
               BoxShadow(
@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   'Nemo',
                   style: TextStyle(
                     // fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Color(0xFF3A2A08),
                     fontSize: 96.0,
                     fontFamily: 'LilitaOne',
                   ),

@@ -50,7 +50,7 @@ class _RegisterScreenState extends State<LoginScreen> {
                 style: TextStyle(
                   fontSize: 30.0,
                   fontFamily: 'LilitaOne',
-                  color: Color(0xFF0B181A),
+                  color: Color(0xFF3A2A08),
                 ),
               ),
               SizedBox(
@@ -92,15 +92,20 @@ class _RegisterScreenState extends State<LoginScreen> {
                 },
                 sufIcon: isPassword ? Icons.visibility : Icons.visibility_off,
               ),
-              CheckboxListTile(
-                title: const Text("Remember me"),
-                value: isChecked,
-                onChanged: (bool? value) {
-                  setState(() {
-                    isChecked = value!;
-                  });
-                },
-                controlAffinity: ListTileControlAffinity.leading,
+              Padding(
+                padding: const EdgeInsetsDirectional.only(
+                  start: 14.0,
+                ),
+                child: CheckboxListTile(
+                  title: const Text("Remember me"),
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                  controlAffinity: ListTileControlAffinity.leading,
+                ),
               ),
               SizedBox(
                 height: 60.0,
@@ -118,7 +123,7 @@ class _RegisterScreenState extends State<LoginScreen> {
                 text: 'Login',
                 textColor: Colors.white,
                 haveBorder: true,
-                containerColor: Color(0xFFFFB500),
+                containerColor: Color(0xFFF3B812),
               ),
               SizedBox(
                 height: 10.0,
@@ -129,7 +134,8 @@ class _RegisterScreenState extends State<LoginScreen> {
                   Text(
                     'Does not have account?...',
                     style: TextStyle(
-                      color: Color(0xFF005C6C),
+                      color: Color(0xFF3A2A08),
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   TextButton(
@@ -141,7 +147,7 @@ class _RegisterScreenState extends State<LoginScreen> {
                       },
                       child: Text(
                         'Sign up',
-                        style: TextStyle(color: Color(0xFFFFB500)),
+                        style: TextStyle(color: Color(0xFFF3B812)),
                       )),
                 ],
               ),

@@ -8,7 +8,7 @@ Widget defaultMaterialButton({
   bool haveBorder = false,
   bool isGoogle = false,
   Color borderColor = Colors.transparent,
-  Color containerColor = const Color(0xFFFFB500),
+  Color containerColor = const Color(0xFFF3B812),
   Color textColor = Colors.black,
   required Function()? valid,
   // required void Function() function,
@@ -38,7 +38,7 @@ Widget defaultMaterialButton({
               child: Text(
                 text,
                 style: TextStyle(
-                  fontSize: 22.0,
+                  fontSize: 15.0,
                   fontWeight: FontWeight.bold,
                   color: textColor,
                 ),
@@ -54,7 +54,7 @@ Widget defaultMaterialButton({
                     ),
                     child: Icon(
                       Icons.gpp_good_sharp,
-                      color: Color(0xFF005C6C),
+                      color: Color(0xFF3A2A08),
                     ),
                   )
                 : Container(),
@@ -101,7 +101,7 @@ Widget defaultTextFormField({
           ),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-              color: Color(0xFF005C6C),
+              color: Color(0xFF3A2A08),
             ),
           ),
         ),
@@ -118,39 +118,42 @@ void showAlertDialog({
     builder: (BuildContext context) {
       return Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(25.0),
         ),
-        child: AlertDialog(
-          title: Text('Hint'),
-          content: Text(label),
-          actions: [
-            Center(
-              child: Container(
-                width: 120.0,
-                height: 40.0,
-                decoration: BoxDecoration(
-                  color: Color(0xFF005C6C),
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: MaterialButton(
-                  onPressed: (){
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15.0,
+        child: Container(
+          height: 100,
+          child: AlertDialog(
+            title: Text('Warning'),
+            content: Text(label),
+            actions: [
+              Center(
+                child: Container(
+                  width: 120.0,
+                  height: 40.0,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF3A2A08),
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  child: MaterialButton(
+                    onPressed: (){
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => LoginScreen()));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15.0,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     },
