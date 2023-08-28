@@ -10,50 +10,69 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData mediaQueryData = MediaQuery.of(context);
+    double screenWidth = mediaQueryData.size.width;
+    double screenHeight = mediaQueryData.size.height;
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children:
-        [
-          Padding(
-            padding: const EdgeInsetsDirectional.only(
-              start: 10.0,
-              end: 10.0,
-              top: 170.0,
-              bottom: 130.0,
+      body: Center(
+        child: Column(
+          children:
+          [
+            Padding(
+              padding: const EdgeInsetsDirectional.only(
+                start: 10.0,
+                end: 10.0,
+                top: 170.0,
+                bottom: 130.0,
+              ),
+              child: Container(
+                height: 250,
+                child: Image(image: AssetImage('assets/welcome.png'),
+                fit: BoxFit.cover,),
+              ),
             ),
-            child: Image(image: AssetImage('assets/welcome.png'),),
-          ),
-          //login
-          defaultMaterialButton(
-            valid: (){
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => LoginScreen()));
-            },
-            text: 'Login',
-            haveBorder: false,
-            textColor:  Colors.white,
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          //sign up
-          defaultMaterialButton(
-            valid: (){
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => RegisterScreen()));
-            },
-            text: 'Sign up',
-            borderColor: Color(0xFF005C6C),
-            containerColor: Colors.white,
-            haveBorder: true,
-            textColor:  Color(0xFF005C6C),
-          ),
-        ],
+            Column(
+              children:
+              [
+                //login
+                defaultMaterialButton(
+                  valid: (){
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LoginScreen()));
+                  },
+                  text: 'Login',
+                  haveBorder: false,
+                  textColor:  Colors.white,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                //sign up
+                defaultMaterialButton(
+                  valid: (){
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegisterScreen()));
+                  },
+                  text: 'Sign up',
+                  borderColor: Color(0xFF005C6C),
+                  containerColor: Colors.white,
+                  haveBorder: true,
+                  textColor:  Color(0xFF005C6C),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+              ],
+            ),
+
+          ],
+        ),
       ),
     );
   }
