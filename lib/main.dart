@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nemo_app/modules/Register%20Screen/RegisterScreen.dart';
+import 'package:nemo_app/modules/welcome%20Screen/WelcomeScreen.dart';
 import 'modules/Splash screen/SplashScreen.dart';
 
 

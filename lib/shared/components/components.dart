@@ -120,40 +120,37 @@ void showAlertDialog({
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25.0),
         ),
-        child: Container(
-          height: 100,
-          child: AlertDialog(
-            title: Text('Warning'),
-            content: Text(label),
-            actions: [
-              Center(
-                child: Container(
-                  width: 120.0,
-                  height: 40.0,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF3A2A08),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: MaterialButton(
-                    onPressed: (){
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => LoginScreen()));
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15.0,
-                        ),
+        child: AlertDialog(
+          title: Text('Warning'),
+          content: Text(label),
+          actions: [
+            Center(
+              child: Container(
+                width: 120.0,
+                height: 40.0,
+                decoration: BoxDecoration(
+                  color: Color(0xFF3A2A08),
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: MaterialButton(
+                  onPressed: (){
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15.0,
                       ),
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       );
     },

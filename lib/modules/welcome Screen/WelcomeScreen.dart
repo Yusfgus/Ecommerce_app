@@ -17,61 +17,63 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Column(
-          children:
-          [
-            Padding(
-              padding: const EdgeInsetsDirectional.only(
-                start: 10.0,
-                end: 10.0,
-                top: 170.0,
-                bottom: 130.0,
+        child: SingleChildScrollView(
+          child: Column(
+            children:
+            [
+              Padding(
+                padding: const EdgeInsetsDirectional.only(
+                  start: 10.0,
+                  end: 10.0,
+                  top: 170.0,
+                  bottom: 130.0,
+                ),
+                child: Container(
+                  height: 250,
+                  child: Image(image: AssetImage('assets/welcome.png'),
+                  fit: BoxFit.cover,),
+                ),
               ),
-              child: Container(
-                height: 250,
-                child: Image(image: AssetImage('assets/welcome.png'),
-                fit: BoxFit.cover,),
+              Column(
+                children:
+                [
+                  //login
+                  defaultMaterialButton(
+                    valid: (){
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
+                    },
+                    text: 'Login',
+                    haveBorder: false,
+                    textColor:  Colors.white,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  //sign up
+                  defaultMaterialButton(
+                    valid: (){
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RegisterScreen()));
+                    },
+                    text: 'Sign up',
+                    borderColor: Color(0xFF3A2A08),
+                    containerColor: Colors.white,
+                    haveBorder: true,
+                    textColor: Color(0xFF3A2A08),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                ],
               ),
-            ),
-            Column(
-              children:
-              [
-                //login
-                defaultMaterialButton(
-                  valid: (){
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LoginScreen()));
-                  },
-                  text: 'Login',
-                  haveBorder: false,
-                  textColor:  Colors.white,
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                //sign up
-                defaultMaterialButton(
-                  valid: (){
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegisterScreen()));
-                  },
-                  text: 'Sign up',
-                  borderColor: Color(0xFF3A2A08),
-                  containerColor: Colors.white,
-                  haveBorder: true,
-                  textColor: Color(0xFF3A2A08),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-              ],
-            ),
 
-          ],
+            ],
+          ),
         ),
       ),
     );
