@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nemo_app/layout/Home%20Layout/HomeLayout.dart';
 import 'package:nemo_app/shared/observer.dart';
+
+import 'layout/Home Layout/HomeLayout.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
