@@ -7,6 +7,8 @@ import 'package:nemo_app/modules/Register%20Screen/RegisterScreen.dart';
 import 'package:nemo_app/modules/welcome%20Screen/WelcomeScreen.dart';
 import 'package:nemo_app/shared/Cubit/states.dart';
 
+import '../../modules/Profile Page/ProfilePage.dart';
+
 class AppCubit extends Cubit<AppStates>{
   AppCubit() : super(AppInitialStates());
 
@@ -20,7 +22,7 @@ class AppCubit extends Cubit<AppStates>{
     const HomePage(),
     const RegisterScreen(),
     const LoginScreen(),
-    const LoginScreen(),
+    const ProfilePage(),
   ];
 
   void changeIndex(int index) {

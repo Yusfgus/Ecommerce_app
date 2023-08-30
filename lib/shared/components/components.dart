@@ -108,9 +108,8 @@ Widget defaultTextFormField({
       ),
     );
 
-
 void showAlertDialog({
-  required BuildContext context ,
+  required BuildContext context,
   required String label,
 }) {
   showDialog(
@@ -133,7 +132,7 @@ void showAlertDialog({
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 child: MaterialButton(
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => LoginScreen()));
                   },
@@ -157,67 +156,126 @@ void showAlertDialog({
   );
 }
 
-Widget ItemBuilder() =>  Padding(
-  padding: const EdgeInsetsDirectional.only(
-    start: 5.0,
-    end: 5.0,
-    bottom: 30.0,
-  ),
-  child: Container(
-    height: 200,
-    width: 174,
-    decoration: BoxDecoration(
-      color: Color(0xFFE2F2FA),
-      borderRadius: BorderRadius.circular(15.0),
-    ),
-    child: Column(
-      children: [
-        Image(
-          image: NetworkImage(
-              'https://www.asus.com/media/Odin/Websites/global/Series/9.png'),
-          fit: BoxFit.cover,
-          height: 150.0,
-          width: 130.0,
+Widget ItemBuilder() => Padding(
+      padding: const EdgeInsetsDirectional.only(
+        start: 5.0,
+        end: 5.0,
+        bottom: 30.0,
+      ),
+      child: Container(
+        height: 200,
+        width: 174,
+        decoration: BoxDecoration(
+          color: Color(0xFFE2F2FA),
+          borderRadius: BorderRadius.circular(15.0),
         ),
-        Row(
+        child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.only(
-                start: 5.0,
-              ),
-              child: Container(
-                width: 100.0,
-                child: Text(
-                  'Producfweqfwt Name',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 13.0,
+            Image(
+              image: NetworkImage(
+                  'https://www.asus.com/media/Odin/Websites/global/Series/9.png'),
+              fit: BoxFit.cover,
+              height: 150.0,
+              width: 130.0,
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(
+                    start: 5.0,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                  child: Container(
+                    width: 100.0,
+                    child: Text(
+                      'Producfweqfwt Name',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Expanded(
-              child: SizedBox(
-                // width: 15.0,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(
-                end: 5.0,
-              ),
-              child: Text(
-                '12220\$',
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                  fontSize: 13.0,
+                Expanded(
+                  child: SizedBox(
+                      // width: 15.0,
+                      ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(
+                    end: 5.0,
+                  ),
+                  child: Text(
+                    '12220\$',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 13.0,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
+      ),
+    );
+
+
+Widget UserInfo(
+    {required String title,
+    required String value,
+    required IconData icon}) => Container(
+  margin: EdgeInsets.only(top: 25),
+    width: 345,
+    height: 50,
+    // color: Colors.red,
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          //the circle
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Color.fromRGBO(217, 217, 217, 1), // Set the border color
+
+              width: 3.0, // Set the border width
+            ),
+          ),
+
+          child: Icon(
+            icon,
+            color: Color.fromRGBO(217, 217, 217, 1),
+          ),
+        ),
+        SizedBox(
+          width: 20,
+        ),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                    color: Color.fromRGBO(125, 125, 125, 1),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500),
+              ),
+              Text(value,
+                  style: TextStyle(
+                      color: Color.fromRGBO(58, 42, 8, 1),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500)),
+            ],
+          ),
+        ),
+        //edit? IconButton(onPressed: () {}, icon: Icon(Icons.mode_edit_outlined), color: Color.fromRGBO(127, 127, 127, 1),) : SizedBox(),
+        IconButton(onPressed: () {}, icon: Icon(Icons.mode_edit_outlined), color: Color.fromRGBO(127, 127, 127, 1),),
       ],
     ),
-  ),
-);
+  );

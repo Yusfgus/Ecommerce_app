@@ -54,7 +54,7 @@ class _HomeLayoutState extends State<HomePage> {
                       start: 10.0,
                       top: 20.0,
                     ),
-                    child: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios)),
+                    child: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios_new_rounded)),
                   ),
                  Expanded(
                    child: Padding(
