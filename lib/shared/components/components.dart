@@ -156,3 +156,68 @@ void showAlertDialog({
     },
   );
 }
+
+Widget ItemBuilder() =>  Padding(
+  padding: const EdgeInsetsDirectional.only(
+    start: 5.0,
+    end: 5.0,
+    bottom: 30.0,
+  ),
+  child: Container(
+    height: 200,
+    width: 174,
+    decoration: BoxDecoration(
+      color: Color(0xFFE2F2FA),
+      borderRadius: BorderRadius.circular(15.0),
+    ),
+    child: Column(
+      children: [
+        Image(
+          image: NetworkImage(
+              'https://www.asus.com/media/Odin/Websites/global/Series/9.png'),
+          fit: BoxFit.cover,
+          height: 150.0,
+          width: 130.0,
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.only(
+                start: 5.0,
+              ),
+              child: Container(
+                width: 100.0,
+                child: Text(
+                  'Producfweqfwt Name',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13.0,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            Expanded(
+              child: SizedBox(
+                // width: 15.0,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(
+                end: 5.0,
+              ),
+              child: Text(
+                '12220\$',
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 13.0,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  ),
+);
