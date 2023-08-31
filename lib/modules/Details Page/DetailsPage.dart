@@ -269,7 +269,6 @@ class _DetailsPageState extends State<DetailsPage> {
                                   color: Colors.white,
                                 ),
                               ),
-//=======
                             ),
                           ),
                         ),
