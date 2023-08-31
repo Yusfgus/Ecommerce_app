@@ -464,7 +464,7 @@ Widget myItems(
       key: Key("gus"),
       child: Container(
         padding: EdgeInsets.all(15),
-        margin: EdgeInsets.all(20),
+        margin: EdgeInsets.only(top: 20, left: 10, right: 10),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -478,6 +478,8 @@ Widget myItems(
           //border: Border.all(color: Colors.black12, width: 2),
         ),
         child: Row(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               width: 110,
@@ -490,12 +492,62 @@ Widget myItems(
                 color: Colors.green,
               ),
             ),
-            Column(
-              children: [
-                Text("data"),
-                Text("loreeem"),
-              ],
-            )
+            SizedBox(
+              width: 12,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          // height: 20,
+                          // width: double.infinity,
+                          // color: Colors.red,
+                          child: Text(
+                            title,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              "\$ ${price - price * (discount / 100)}",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              "\$ ${price}",
+                              style: TextStyle(
+                                color: Color(0xff7d7d7d),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                            ),
+                          ],
+                        )
+                      ]),
+                  SizedBox(height: 5,),
+                  Text(
+                    description,
+                    style: TextStyle(
+                        color: Color(0xff7d7d7d),
+                        fontSize: 10,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
