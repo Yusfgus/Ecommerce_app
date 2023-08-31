@@ -110,9 +110,8 @@ Widget defaultTextFormField({
       ),
     );
 
-
 void showAlertDialog({
-  required BuildContext context ,
+  required BuildContext context,
   required String label,
 }) {
   showDialog(
@@ -343,11 +342,11 @@ Widget tapBarItem ({
 
 Widget UserInfo(
     {required String title,
-      required String value,
-      required IconData icon,
-      required bool enable}) {
+    required String value,
+    required IconData icon,
+    required bool enable}) {
   final TextEditingController _textEditingController =
-  TextEditingController(text: value);
+      TextEditingController(text: value);
   return Container(
     margin: EdgeInsets.only(top: 25),
     width: 345,
@@ -428,3 +427,89 @@ Widget UserInfo(
   );
 }
 
+Widget CustomAppBar(
+        {required String title,
+        required Color backcolor,
+        required Color textColor}) =>
+    Container(
+      height: 100,
+      decoration: BoxDecoration(
+        color: backcolor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade300,
+            blurRadius: 10.0,
+            spreadRadius: 2.0,
+            offset: Offset(0, 10),
+          ),
+        ],
+      ),
+      child: Padding(
+          padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
+          child: Center(
+            child: Row(children: [
+              IconButton(
+                  onPressed: () {
+                    print("Back Button Pressed (Detail Page)");
+                  },
+                  icon: Icon(Icons.arrow_back_ios_rounded)),
+              Expanded(
+                  child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: textColor),
+              )),
+            ]),
+          )),
+    );
+
+Widget myItems(
+        {required String imagePath,
+        required String title,
+        required String description,
+        required double price,
+        required double discount}) =>
+    Dismissible(
+      key: Key("gus"),
+      child: Container(
+        padding: EdgeInsets.all(15),
+        margin: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade300,
+              blurRadius: 10.0,
+              spreadRadius: 2.0,
+              offset: Offset(0, 10),
+            ),
+          ],
+          color: Colors.white,
+          //border: Border.all(color: Colors.black12, width: 2),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 110,
+              height: 80,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(imagePath),
+                  fit: BoxFit.cover,
+                ),
+                color: Colors.green,
+              ),
+            ),
+            Column(
+              children: [
+                Text("data"),
+              Text("loreeem"),
+              ],
+            )
+          ],
+        ),
+      ),
+      onDismissed: (direction) {},
+    );

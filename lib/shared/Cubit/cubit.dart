@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nemo_app/modules/Details%20Page/DetailsPage.dart';
+import 'package:nemo_app/modules/Favorite%20Page/FavoritePage.dart';
 import 'package:nemo_app/modules/Home%20Page/HomePage.dart';
 import 'package:nemo_app/modules/Login%20Page/LoginScreen.dart';
 import 'package:nemo_app/modules/Register%20Screen/RegisterScreen.dart';
@@ -17,7 +19,8 @@ class AppCubit extends Cubit<AppStates>{
   int currentIndex = 0;
   List<Widget> currentScreen = [
     const HomePage(),
-    const LoginScreen(),
+    const DetailsPage(),
+    const FavoritePage(),
     const ProfilePage(),
   ];
 
