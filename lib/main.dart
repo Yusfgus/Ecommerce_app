@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nemo_app/modules/Details%20Page/DetailsPage.dart';
+import 'package:nemo_app/layout/Home%20Layout/HomeLayout.dart';
 import 'package:nemo_app/shared/observer.dart';
 
 void main() {
@@ -19,6 +19,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: DetailsPage());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeLayout());
   }
 }

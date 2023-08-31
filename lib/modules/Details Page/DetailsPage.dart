@@ -42,7 +42,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     image: NetworkImage(
                         'https://www.asus.com/media/Odin/Websites/global/Series/9.png'),
                     fit: BoxFit.fitHeight,
-                    height: 350,
+                    height: 330,
                     width: double.infinity,
                   ),
                   Container(

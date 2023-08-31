@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../modules/Login Page/LoginScreen.dart';
@@ -134,7 +131,7 @@ void showAlertDialog({
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 child: MaterialButton(
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => LoginScreen()));
                   },
@@ -163,182 +160,173 @@ Widget itemBuilder({
   required String productName,
   required String price,
   required String discount,
-}) => Padding(
-  padding: const EdgeInsetsDirectional.only(
-    start: 5.0,
-    end: 5.0,
-    bottom: 12.0,
-  ),
-  child: Container(
-    height: 260,
-    width: 174,
-    decoration: BoxDecoration(
-      // color: Color(0xFFE2F2FA),
-      borderRadius: BorderRadius.circular(20.0),
-      border: Border.all(
-        color: Color(0xFF3A2A08),
-        // Set the desired border color here
-        width: 1, // Set the desired border width here
+}) =>
+    Padding(
+      padding: const EdgeInsetsDirectional.only(
+        start: 5.0,
+        end: 5.0,
+        bottom: 12.0,
       ),
-      color: Color(0xFFFDF5D2),
-    ),
-    child: Column(
-      children: [
-        Expanded(
-          child: Container(
-            height: 160,
-            width: 182,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                20.0,
-              ),
-            ),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            child: Image(
-              image: NetworkImage(
-                  url),
-              fit: BoxFit.cover,
-              height: 150.0,
-              width: 130.0,
-            ),
+      child: Container(
+        height: 260,
+        width: 174,
+        decoration: BoxDecoration(
+          // color: Color(0xFFE2F2FA),
+          borderRadius: BorderRadius.circular(20.0),
+          border: Border.all(
+            color: Color(0xFF3A2A08),
+            // Set the desired border color here
+            width: 1, // Set the desired border width here
           ),
+          color: Color(0xFFFDF5D2),
         ),
-        SizedBox(
-          height: 5.0,
-        ),
-        Row(
-          crossAxisAlignment:
-          CrossAxisAlignment.start,
+        child: Column(
           children: [
-            Padding(
-              padding:
-              const EdgeInsetsDirectional.only(
-                start: 5.0,
-              ),
+            Expanded(
               child: Container(
-                width: 100.0,
-                child: Text(
-                  productName,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 13.0,
+                height: 160,
+                width: 182,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    20.0,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                ),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Image(
+                  image: NetworkImage(url),
+                  fit: BoxFit.cover,
+                  height: 150.0,
+                  width: 130.0,
                 ),
               ),
             ),
-            Expanded(
-              child: SizedBox(
-                // width: 15.0,
-              ),
+            SizedBox(
+              height: 5.0,
             ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(
+                    start: 5.0,
+                  ),
+                  child: Container(
+                    width: 100.0,
+                    child: Text(
+                      productName,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: SizedBox(
+                      // width: 15.0,
+                      ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(
+                    end: 5.0,
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        price,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 13.0,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 3.0,
+                      ),
+                      Text(
+                        discount,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          fontSize: 12.0,
+                          color: Colors.grey[900],
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+
+Widget tapBarItem({
+  required String label,
+  double width = 100.0,
+  void Function()? tapping,
+  Color? coloor,
+}) =>
+    Padding(
+      padding: const EdgeInsetsDirectional.only(
+        start: 2.0,
+        end: 10.0,
+      ),
+      child: GestureDetector(
+        onTap: tapping,
+        child: Row(
+          children: [
             Padding(
-              padding:
-              const EdgeInsetsDirectional.only(
-                end: 5.0,
+              padding: const EdgeInsetsDirectional.only(
+                start: 10.0,
               ),
-              child: Column(
-                children: [
-                  Text(
-                    price,
+              child: Container(
+                width: width,
+                height: 35.0,
+                decoration: BoxDecoration(
+                  color: coloor,
+                  borderRadius: BorderRadius.circular(
+                    15.0,
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    label,
                     style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 13.0,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
-                    height: 3.0,
-                  ),
-                  Text(
-                    discount,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 12.0,
-                      color: Colors.grey[900],
-                      decoration:
-                      TextDecoration.lineThrough,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ],
         ),
-      ],
-    ),
-  ),
-);
+      ),
+    );
 
-
-Widget tapBarItem ({
-  required String label,
-  double width = 100.0,
-   void Function()? tapping,
-   Color? coloor,
-}) =>  Padding(
-  padding: const EdgeInsetsDirectional.only(
-    start: 2.0,
-    end: 10.0,
-  ),
-  child: GestureDetector(
-    onTap: tapping,
-    child: Row(
-      children: [
-        Padding(
-          padding: const EdgeInsetsDirectional
-              .only(
-            start: 10.0,
-          ),
-          child: Container(
-            width: width,
-            height: 35.0,
-            decoration: BoxDecoration(
-              color: coloor,
-              borderRadius:
-              BorderRadius.circular(
-                15.0,
-              ),
-            ),
-            child: Center(
-              child: Text(
-                label,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
-  ),
-);
-
-
- Widget  gridBuilder (
-{
-    //required int index,
-    required BuildContext context,
-    required int itemCount,
-    void Function()? tapping,
-    required Widget child,
-}) =>  GridView.builder(
-     itemCount: itemCount,
-     shrinkWrap: true,
-     physics: const NeverScrollableScrollPhysics(),
-     gridDelegate:
-     const SliverGridDelegateWithFixedCrossAxisCount(
-         childAspectRatio: 0.9, crossAxisCount: 2),
-     itemBuilder: (context, index) {
-       return GestureDetector(
-         onTap: ()
-         {
-           print(index);
-         },
-         child:child,
-       );
-     });
+Widget gridBuilder({
+  //required int index,
+  required BuildContext context,
+  required int itemCount,
+  void Function()? tapping,
+  required Widget child,
+}) =>
+    GridView.builder(
+        itemCount: itemCount,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            childAspectRatio: 0.9, crossAxisCount: 2),
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              print(index);
+            },
+            child: child,
+          );
+        });
 
 Widget UserInfo(
     {required String title,
@@ -432,7 +420,7 @@ Widget CustomAppBar(
         required Color backcolor,
         required Color textColor}) =>
     Container(
-      height: 100,
+      height: 80,
       decoration: BoxDecoration(
         color: backcolor,
         boxShadow: [
@@ -505,7 +493,7 @@ Widget myItems(
             Column(
               children: [
                 Text("data"),
-              Text("loreeem"),
+                Text("loreeem"),
               ],
             )
           ],
