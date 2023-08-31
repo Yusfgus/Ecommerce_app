@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nemo_app/shared/components/components.dart';
+
+import '../../shared/components/components.dart';
+
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -60,10 +62,10 @@ class ProfilePage extends StatelessWidget {
                         bottom: 0,
                         right: 38,
                         child: CircleAvatar(
-                          child: Image.asset(
-                            "assets/avatar.png", width: 147, height: 147,),
                           backgroundColor: Colors.white,
                           radius: 75,
+                          child: Image.asset(
+                            "assets/avatar.png", width: 147, height: 147,),
                         ),
                       ),
                     ],
@@ -74,16 +76,16 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       UserInfo(title: "Name",
                           value: "Yousef Mohamed",
-                          icon: Icons.person_2_outlined),
+                          icon: Icons.person_2_outlined, enable: false),
                       UserInfo(title: "Password",
                           value: "blablabla",
-                          icon: Icons.lock_open_sharp),
+                          icon: Icons.lock_open_sharp, enable: false),
                       UserInfo(title: "Address",
                           value: "Ain Shams",
-                          icon: Icons.home_work_outlined),
+                          icon: Icons.home_work_outlined, enable: false),
                       UserInfo(title: "Phone number",
                           value: "01158689513",
-                          icon: Icons.phone),
+                          icon: Icons.phone, enable: false),
                     ],
                   ),
                 ),

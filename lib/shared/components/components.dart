@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -108,8 +110,9 @@ Widget defaultTextFormField({
       ),
     );
 
+
 void showAlertDialog({
-  required BuildContext context,
+  required BuildContext context ,
   required String label,
 }) {
   showDialog(
@@ -132,7 +135,7 @@ void showAlertDialog({
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 child: MaterialButton(
-                  onPressed: () {
+                  onPressed: (){
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => LoginScreen()));
                   },
@@ -156,79 +159,199 @@ void showAlertDialog({
   );
 }
 
-Widget ItemBuilder() => Padding(
-      padding: const EdgeInsetsDirectional.only(
-        start: 5.0,
-        end: 5.0,
-        bottom: 30.0,
+Widget itemBuilder({
+  required String url,
+  required String productName,
+  required String price,
+  required String discount,
+}) => Padding(
+  padding: const EdgeInsetsDirectional.only(
+    start: 5.0,
+    end: 5.0,
+    bottom: 12.0,
+  ),
+  child: Container(
+    height: 260,
+    width: 174,
+    decoration: BoxDecoration(
+      // color: Color(0xFFE2F2FA),
+      borderRadius: BorderRadius.circular(20.0),
+      border: Border.all(
+        color: Color(0xFF3A2A08),
+        // Set the desired border color here
+        width: 1, // Set the desired border width here
       ),
-      child: Container(
-        height: 200,
-        width: 174,
-        decoration: BoxDecoration(
-          color: Color(0xFFE2F2FA),
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        child: Column(
-          children: [
-            Image(
+      color: Color(0xFFFDF5D2),
+    ),
+    child: Column(
+      children: [
+        Expanded(
+          child: Container(
+            height: 160,
+            width: 182,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                20.0,
+              ),
+            ),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: Image(
               image: NetworkImage(
-                  'https://www.asus.com/media/Odin/Websites/global/Series/9.png'),
+                  url),
               fit: BoxFit.cover,
               height: 150.0,
               width: 130.0,
             ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                    start: 5.0,
+          ),
+        ),
+        SizedBox(
+          height: 5.0,
+        ),
+        Row(
+          crossAxisAlignment:
+          CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding:
+              const EdgeInsetsDirectional.only(
+                start: 5.0,
+              ),
+              child: Container(
+                width: 100.0,
+                child: Text(
+                  productName,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13.0,
                   ),
-                  child: Container(
-                    width: 100.0,
-                    child: Text(
-                      'Producfweqfwt Name',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.0,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                Expanded(
-                  child: SizedBox(
-                      // width: 15.0,
-                      ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                    end: 5.0,
-                  ),
-                  child: Text(
-                    '12220\$',
+              ),
+            ),
+            Expanded(
+              child: SizedBox(
+                // width: 15.0,
+              ),
+            ),
+            Padding(
+              padding:
+              const EdgeInsetsDirectional.only(
+                end: 5.0,
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    price,
                     style: TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 13.0,
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 3.0,
+                  ),
+                  Text(
+                    discount,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12.0,
+                      color: Colors.grey[900],
+                      decoration:
+                      TextDecoration.lineThrough,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
-      ),
-    );
+      ],
+    ),
+  ),
+);
 
+
+Widget tapBarItem ({
+  required String label,
+  double width = 100.0,
+   void Function()? tapping,
+   Color? coloor,
+}) =>  Padding(
+  padding: const EdgeInsetsDirectional.only(
+    start: 2.0,
+    end: 10.0,
+  ),
+  child: GestureDetector(
+    onTap: tapping,
+    child: Row(
+      children: [
+        Padding(
+          padding: const EdgeInsetsDirectional
+              .only(
+            start: 10.0,
+          ),
+          child: Container(
+            width: width,
+            height: 35.0,
+            decoration: BoxDecoration(
+              color: coloor,
+              borderRadius:
+              BorderRadius.circular(
+                15.0,
+              ),
+            ),
+            child: Center(
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  ),
+);
+
+
+ Widget  gridBuilder (
+{
+    //required int index,
+    required BuildContext context,
+    required int itemCount,
+    void Function()? tapping,
+    required Widget child,
+}) =>  GridView.builder(
+     itemCount: itemCount,
+     shrinkWrap: true,
+     physics: const NeverScrollableScrollPhysics(),
+     gridDelegate:
+     const SliverGridDelegateWithFixedCrossAxisCount(
+         childAspectRatio: 0.9, crossAxisCount: 2),
+     itemBuilder: (context, index) {
+       return GestureDetector(
+         onTap: ()
+         {
+           print(index);
+         },
+         child:child,
+       );
+     });
 
 Widget UserInfo(
     {required String title,
-    required String value,
-    required IconData icon}) => Container(
-  margin: EdgeInsets.only(top: 25),
+      required String value,
+      required IconData icon,
+      required bool enable}) {
+  final TextEditingController _textEditingController =
+  TextEditingController(text: value);
+  return Container(
+    margin: EdgeInsets.only(top: 25),
     width: 345,
-    height: 50,
+    //height: 50,
     // color: Colors.red,
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -256,7 +379,7 @@ Widget UserInfo(
         ),
         Expanded(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -266,16 +389,42 @@ Widget UserInfo(
                     fontSize: 15,
                     fontWeight: FontWeight.w500),
               ),
-              Text(value,
-                  style: TextStyle(
-                      color: Color.fromRGBO(58, 42, 8, 1),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500)),
+              // Text(value,
+              //     style: TextStyle(
+              //         color: Color.fromRGBO(58, 42, 8, 1),
+              //         fontSize: 18,
+              //         fontWeight: FontWeight.w500)),
+              Container(
+                  margin: EdgeInsets.only(top: 10),
+                  //width: 20,  // Set the desired width
+                  height: 25, // Set the desired height
+                  //color: Colors.red,
+                  child: TextField(
+                    enabled: enable,
+                    controller: _textEditingController,
+                    onChanged: (value) {
+                      // Handle the text value
+                    },
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: '',
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                    ),
+                    textAlignVertical: TextAlignVertical.top,
+                    textAlign: TextAlign.start,
+                  ))
             ],
           ),
         ),
         //edit? IconButton(onPressed: () {}, icon: Icon(Icons.mode_edit_outlined), color: Color.fromRGBO(127, 127, 127, 1),) : SizedBox(),
-        IconButton(onPressed: () {}, icon: Icon(Icons.mode_edit_outlined), color: Color.fromRGBO(127, 127, 127, 1),),
+        // IconButton(onPressed: () {},
+        //   icon: Icon(Icons.mode_edit_outlined),
+        //   color: Color.fromRGBO(127, 127, 127, 1),),
       ],
     ),
   );
+}
+

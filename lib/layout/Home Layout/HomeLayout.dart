@@ -9,19 +9,17 @@ class HomeLayout extends StatefulWidget {
   @override
   State<HomeLayout> createState() => _HomeLayoutState();
 }
-
-//AppCubit cubit = AppCubit.get(context);
 class _HomeLayoutState extends State<HomeLayout> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit(),
-      child: BlocConsumer<AppCubit, AppStates>(
+        create: (context) => AppCubit(),
+        child: BlocConsumer<AppCubit, AppStates > (
         listener: (context, state) {},
-        builder: (context, state) {
-          AppCubit cubit = AppCubit.get(context);
+         builder: (context, state) {
+           AppCubit cubit = AppCubit.get(context);
           return Scaffold(
-            body: cubit.currentScreen[cubit.currentIndex],
+            body:  cubit.currentScreen[cubit.currentIndex],
             bottomNavigationBar: Material(
               elevation: 20.0,
               child: CurvedNavigationBar(
@@ -30,35 +28,24 @@ class _HomeLayoutState extends State<HomeLayout> {
                 items: [
                   Icon(
                     Icons.home,
-                    color: cubit.currentIndex == 0
-                        ? Color(0xFFF3B812)
-                        : Colors.grey,
+                    color: Color(0xFFF3B812),
                   ),
                   Icon(
                     Icons.shopping_cart,
-                    color: cubit.currentIndex == 1
-                        ? Color(0xFFF3B812)
-                        : Colors.grey,
+                    color: Color(0xFFF3B812),
                   ),
                   Icon(
                     Icons.favorite,
-                    color: cubit.currentIndex == 2
-                        ? Color(0xFFF3B812)
-                        : Colors.grey,
+                    color: Color(0xFFF3B812),
                   ),
                   Icon(
                     Icons.person,
-                    color: cubit.currentIndex == 3
-                        ? Color(0xFFF3B812)
-                        : Colors.grey,
+                    color: Color(0xFFF3B812),
                   ),
                 ],
                 color: Colors.white,
-
-                buttonBackgroundColor: Colors.grey.shade100,
-                backgroundColor: Colors.amber.shade100,
-                // buttonBackgroundColor: Colors.amber.shade100,
-                // backgroundColor: Colors.grey.shade400,
+                buttonBackgroundColor: Color(0xFF3A2A08),
+                backgroundColor: Color(0xEA000000),
                 onTap: (index) {
                   cubit.changeIndex(index);
                 },
@@ -67,8 +54,8 @@ class _HomeLayoutState extends State<HomeLayout> {
               ),
             ),
           );
-        },
-      ),
+         },
+    ),
     );
   }
 }
