@@ -14,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const WelcomeScreen()));
+          context, MaterialPageRoute(builder: (context) =>  WelcomeScreen()));
     });
   }
 
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
             borderRadius: BorderRadius.circular(40.0),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(1.0),
+                color: Color(0xFF020202).withOpacity(1.0),
                 spreadRadius: 3,
                 blurRadius: 12,
                 offset: const Offset(0, 3),

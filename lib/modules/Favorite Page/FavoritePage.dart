@@ -14,7 +14,8 @@ class FavoritePage extends StatelessWidget {
           children: [
             CustomAppBar(
                 title: "Favorite",
-                backcolor: Colors.white,
+               backcolor: Colors.white,
+               // backcolor:Color(0xFFEFBA3F),
                 textColor: Colors.black),
             ListView.separated(
               shrinkWrap: true,
