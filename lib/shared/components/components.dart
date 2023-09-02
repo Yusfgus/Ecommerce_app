@@ -436,11 +436,11 @@ Widget CustomAppBar(
           padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
           child: Center(
             child: Row(children: [
-              IconButton(
-                  onPressed: () {
-                    print("Back Button Pressed (Detail Page)");
-                  },
-                  icon: Icon(Icons.arrow_back_ios_rounded)),
+              // IconButton(
+              //     onPressed: () {
+              //       print("Back Button Pressed (Detail Page)");
+              //     },
+              //     icon: Icon(Icons.arrow_back_ios_rounded)),
               Expanded(
                   child: Text(
                 title,

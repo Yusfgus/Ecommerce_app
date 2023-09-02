@@ -24,7 +24,7 @@ class _HomeLayoutState extends State<HomePage> {
   ];
   int selectedIndex = 0;
   int itemCount = 10;
-  List<int> test = [5,6,7,8,9,10];
+  List<int> test = [9,6,7,8,9,10];
   List<Widget> itemType = [
     itemBuilder(url:  'https://www.trustedreviews.com/wp-content/uploads/sites/54/2023/02/Samsung-Galaxy-S23-Ultra-review-5-1024x580.jpg',
         productName: 'Smart Phone',
@@ -94,9 +94,9 @@ class _HomeLayoutState extends State<HomePage> {
                                 start: 10.0,
                                 top: 20.0,
                               ),
-                              child: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.arrow_back_ios)),
+                              // child: IconButton(
+                              //     onPressed: () {},
+                              //     icon: Icon(Icons.arrow_back_ios)),
                             ),
                             //text form field
                             Expanded(
@@ -163,21 +163,25 @@ class _HomeLayoutState extends State<HomePage> {
                                   children: [
                                     tapBarItem(
                                       label: categories[index],
-                                      width:
-                                          categories[index] == 'Home Decoration'
-                                              ? 120.0
-                                              : 100.0,
+                                      // width:
+                                      //     categories[index] == 'Home Decoration'
+                                      //         ? 120.0
+                                      //         : 100.0,
+                                      width: 8.5 * categories[index].length,
                                       coloor: selectedIndex == index
                                           ? Colors.white
                                           : Colors.transparent,
                                     ),
                                     Container(
-                                      width: 65,
+                                      width: 8.0 * categories[index].length,
                                       height: 4,
                                       margin: EdgeInsets.only(top: 8.0),
-                                      color: selectedIndex == index
-                                          ? Color(0xFFF3B812)
-                                          : Colors.transparent,
+                                      decoration: BoxDecoration(
+                                        color: selectedIndex == index
+                                            ? Color(0xFFF3B812)
+                                            : Colors.transparent,
+                                        borderRadius: BorderRadius.circular(3),
+                                      ),
                                     ),
                                   ],
                                 ),

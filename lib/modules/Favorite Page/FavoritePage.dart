@@ -26,8 +26,8 @@ class FavoritePage extends StatelessWidget {
                   title: "Laptop",
                   description:
                       "Lorem Ipsum is simply dummy text of \nthe printing and typesetting industry",
-                  price: 150,
-                  discount: 20),
+                  price: 1450,
+                  discount: 25),
               separatorBuilder: (BuildContext context, int index) {
                 return SizedBox(
                   width: 0,

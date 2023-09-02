@@ -195,7 +195,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           style: TextStyle(
                             // fontWeight: FontWeight.bold,
                             color: Color(0xFF3A2A08),
-                            fontSize: 50.0,
+                            fontSize: 40.0,
                             fontFamily: 'LilitaOne',
                           ),
                         ),
