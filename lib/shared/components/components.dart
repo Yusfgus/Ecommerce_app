@@ -466,20 +466,20 @@ Widget myItems(
         padding: EdgeInsets.all(15),
         margin: EdgeInsets.only(top: 20, left: 10, right: 10),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade300,
-              //color: Color(0xFFEAB96C),
-              blurRadius: 10.0,
-              spreadRadius: 2.0,
-              offset: Offset(0, 10),
+            borderRadius: BorderRadius.circular(15.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade300,
+                //color: Color(0xFFEAB96C),
+                blurRadius: 10.0,
+                spreadRadius: 2.0,
+                offset: Offset(0, 10),
+              ),
+            ],
+            color: Colors.white
+            //color: Color(0xFFFDF5D2),
+            //border: Border.all(color: Colors.black12, width: 2),
             ),
-          ],
-          color: Colors.white
-          //color: Color(0xFFFDF5D2),
-          //border: Border.all(color: Colors.black12, width: 2),
-        ),
         child: Row(
           // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -540,7 +540,9 @@ Widget myItems(
                           ],
                         )
                       ]),
-                  SizedBox(height: 5,),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Text(
                     description,
                     style: TextStyle(
