@@ -3,6 +3,7 @@ import 'package:nemo_app/modules/Login%20Page/LoginScreen.dart';
 import 'package:nemo_app/modules/Register%20Screen/RegisterScreen.dart';
 import '../../layout/Home Layout/HomeLayout.dart';
 import '../../shared/components/components.dart';
+import '../../shared/constants/constants.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -45,12 +46,19 @@ class _RegisterScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              Text(
-                'Log in',
-                style: TextStyle(
-                  fontSize: 30.0,
-                  fontFamily: 'LilitaOne',
-                  color: Color(0xFF3A2A08),
+              SlideFadeTransition(
+                curve: Curves.elasticOut,
+                delayStart: Duration(milliseconds: 700),
+                animationDuration: Duration(milliseconds: 1200),
+                offset: 2.5,
+                direction: Direction.horizontal,
+                child: Text(
+                  'Log in',
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    fontFamily: 'LilitaOne',
+                    color: Color(0xFF3A2A08),
+                  ),
                 ),
               ),
               SizedBox(
@@ -114,10 +122,8 @@ class _RegisterScreenState extends State<LoginScreen> {
               defaultMaterialButton(
                 valid: () {
                   if (formKey.currentState!.validate()) {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HomeLayout()));
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => HomeLayout()));
                   }
                 },
                 text: 'Login',

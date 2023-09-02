@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nemo_app/modules/Login%20Page/LoginScreen.dart';
 import '../../shared/components/components.dart';
+import '../../shared/constants/constants.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -43,12 +44,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-              Text(
-                'Create Account',
-                style: TextStyle(
-                  fontSize: 30.0,
-                  fontFamily: 'LilitaOne',
-                  color: Color(0xFF3A2A08),
+              SlideFadeTransition(
+                curve: Curves.elasticOut,
+                delayStart: Duration(milliseconds: 700),
+                animationDuration: Duration(milliseconds: 1200),
+                offset: 2.5,
+                direction: Direction.horizontal,
+                child: Text(
+                  'Create Account',
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    fontFamily: 'LilitaOne',
+                    color: Color(0xFF3A2A08),
+                  ),
                 ),
               ),
               SizedBox(
@@ -112,7 +120,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               defaultMaterialButton(
                 valid: () {
                   if (formKey.currentState!.validate()) {
-                    showAlertDialog(context : context ,label : 'Registration Done Successfully!');
+                    showAlertDialog(
+                        context: context,
+                        label: 'Registration Done Successfully!');
                   }
                 },
                 text: 'Sign up',
@@ -130,7 +140,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 borderColor: Color(0xFF3A2A08),
                 containerColor: Colors.white,
                 haveBorder: true,
-                textColor:Color(0xFF3A2A08),
+                textColor: Color(0xFF3A2A08),
                 isGoogle: true,
               ),
               Row(
@@ -139,7 +149,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Text(
                     'already have account?...',
                     style: TextStyle(
-                      color:Color(0xFF3A2A08),
+                      color: Color(0xFF3A2A08),
                       fontWeight: FontWeight.w500,
                     ),
                   ),

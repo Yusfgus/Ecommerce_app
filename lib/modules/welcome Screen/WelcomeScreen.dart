@@ -1,9 +1,11 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:nemo_app/modules/Login%20Page/LoginScreen.dart';
 import 'package:nemo_app/modules/Register%20Screen/RegisterScreen.dart';
 
 import '../../shared/components/components.dart';
+import '../../shared/constants/constants.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -51,7 +53,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xFFFDEBB9),//F3B812
+                  color: Color(0xFFFDEBB9), //F3B812
                   borderRadius: BorderRadius.circular(40.0),
                   boxShadow: [
                     BoxShadow(
@@ -69,46 +71,67 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       height: screenHeight * 0.47,
                       child: Padding(
                         padding: const EdgeInsetsDirectional.only(
-                            start: 30.0,
-                            top: 11.0,
+                          start: 30.0,
+                          top: 11.0,
                           end: 50.0,
                         ),
                         child: Column(
                           children: [
-                            Text(
-                              'Nemo',
-                              style: TextStyle(
-                                // fontWeight: FontWeight.bold,
-                                color: Color(0xFF3A2A08),
-                                fontSize: 70.0,
-                                fontFamily: 'LilitaOne',
-                                fontStyle: FontStyle.italic,
+                            SlideFadeTransition(
+                              curve: Curves.elasticOut,
+                              delayStart: Duration(milliseconds: 500),
+                              animationDuration: Duration(milliseconds: 1200),
+                              offset: 2.5,
+                              direction: Direction.horizontal,
+                              child: Text(
+                                'Nemo',
+                                style: TextStyle(
+                                  // fontWeight: FontWeight.bold,
+                                  color: Color(0xFF3A2A08),
+                                  fontSize: 70.0,
+                                  fontFamily: 'LilitaOne',
+                                  fontStyle: FontStyle.italic,
+                                ),
                               ),
                             ),
                             SizedBox(
                               height: 20,
                             ),
-                            Text('Unlock a world of seamless shopping with our e-commerce app,'
+                            SlideFadeTransition(
+                              curve: Curves.elasticOut,
+                              delayStart: Duration(milliseconds: 1000),
+                              animationDuration: Duration(milliseconds: 1200),
+                              offset: 2.5,
+                              direction: Direction.horizontal,
+                              child: Text(
+                                'Unlock a world of seamless shopping with our e-commerce app,'
                                 ' where style meets convenience at your fingertips.',
-                            style: TextStyle(
-                              fontSize: 30.0,
-                              color: Colors.black,
-                             fontStyle: FontStyle.italic,
-                             fontFamily: 'BebasNeue',
-                            ),
-                              maxLines: 6,
-                              overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 30.0,
+                                  color: Colors.black,
+                                  fontStyle: FontStyle.italic,
+                                  fontFamily: 'BebasNeue',
+                                ),
+                                maxLines: 6,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    Container(
-                     width: double.maxFinite,
-                     height: screenHeight * 0.50,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/image1.png'),
+                    SlideFadeTransition(
+                      delayStart: Duration(milliseconds: 1000),
+                      animationDuration: Duration(milliseconds: 700),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      offset: 5,
+                      child: Container(
+                        width: double.maxFinite,
+                        height: screenHeight * 0.50,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/image1.png'),
+                          ),
                         ),
                       ),
                     ),
@@ -121,7 +144,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xFFF6F0D8),//F3B812
+                  color: Color(0xFFF6F0D8), //F3B812
                   borderRadius: BorderRadius.circular(40.0),
                   boxShadow: [
                     BoxShadow(
@@ -145,30 +168,43 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                         child: Column(
                           children: [
-
                             SizedBox(
                               height: 20,
                             ),
-                            Text('Now you can buy our products through our application Nemo, more surprises are waiting for you there, come on...',
-                              style: TextStyle(
-                                fontSize: 30.0,
-                                color: Colors.black,
-                                fontStyle: FontStyle.italic,
-                                fontFamily: 'BebasNeue',
+                            SlideFadeTransition(
+                              curve: Curves.elasticOut,
+                              delayStart: Duration(milliseconds: 300),
+                              animationDuration: Duration(milliseconds: 1200),
+                              offset: 2.5,
+                              direction: Direction.vertical,
+                              child: Text(
+                                'Now you can buy our products through our application Nemo, more surprises are waiting for you there, come on...',
+                                style: TextStyle(
+                                  fontSize: 30.0,
+                                  color: Colors.black,
+                                  fontStyle: FontStyle.italic,
+                                  fontFamily: 'BebasNeue',
+                                ),
+                                maxLines: 6,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              maxLines: 5,
-                              overflow: TextOverflow.ellipsis,
                             ),
                           ],
                         ),
                       ),
                     ),
-                    Container(
-                      width: double.maxFinite,
-                      height: screenHeight * 0.50,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/image2.png'),
+                    SlideFadeTransition(
+                      delayStart: Duration(milliseconds: 900),
+                      animationDuration: Duration(milliseconds: 700),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      offset: 5,
+                      child: Container(
+                        width: double.maxFinite,
+                        height: screenHeight * 0.50,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/image2.png'),
+                          ),
                         ),
                       ),
                     ),
@@ -190,17 +226,26 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                     child: Column(
                       children: [
-                        Text(
-                          'Welcome back ! ...',
-                          style: TextStyle(
-                            // fontWeight: FontWeight.bold,
-                            color: Color(0xFF3A2A08),
-                            fontSize: 50.0,
-                            fontFamily: 'LilitaOne',
+                        SlideFadeTransition(
+                          curve: Curves.elasticOut,
+                          delayStart: Duration(milliseconds: 500),
+                          animationDuration: Duration(milliseconds: 1200),
+                          offset: 2.5,
+                          direction: Direction.horizontal,
+                          child: Text(
+                            'Welcome back ! ...',
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              color: Colors.black,
+                              fontStyle: FontStyle.italic,
+                              fontFamily: 'BebasNeue',
+                            ),
+                            maxLines: 6,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         SizedBox(
-                          height: 30.0,
+                          height: 50.0,
                         ),
                         Container(
                           height: 250,

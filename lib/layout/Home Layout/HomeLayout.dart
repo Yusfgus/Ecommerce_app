@@ -44,8 +44,8 @@ class _HomeLayoutState extends State<HomeLayout> {
                   ),
                 ],
                 color: Colors.white,
-                buttonBackgroundColor: Color(0xFF3A2A08),
-                backgroundColor: Color(0xEA000000),
+                buttonBackgroundColor: Color(0xFF49340A),
+                backgroundColor: Color(0xFFFCC63A),
                 onTap: (index) {
                   cubit.changeIndex(index);
                 },

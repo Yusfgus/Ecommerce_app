@@ -10,11 +10,11 @@ void main() {
     systemNavigationBarColor: Colors.white,
   ));
   Bloc.observer = MyBlocObserver();
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({super.key});
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
