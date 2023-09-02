@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nemo_app/shared/Cubit/cubit.dart';
+import 'package:nemo_app/shared/constants/constants.dart';
 
 import '../../shared/Cubit/states.dart';
 import '../../shared/components/components.dart';
+import '../Details Page/DetailsPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,39 +27,40 @@ class _HomeLayoutState extends State<HomePage> {
   int selectedIndex = 0;
   int itemCount = 10;
   List<int> test = [9,6,7,8,9,10];
-  List<Widget> itemType = [
-    itemBuilder(url:  'https://www.trustedreviews.com/wp-content/uploads/sites/54/2023/02/Samsung-Galaxy-S23-Ultra-review-5-1024x580.jpg',
-        productName: 'Smart Phone',
-        price: '1500 \$',
-        discount: '1750 \$',
-    ),
-    itemBuilder(url: 'https://www.asus.com/media/Odin/Websites/global/Series/9.png',
-      productName: 'Laptops',
-      price: '1500 \$',
-      discount: '1750 \$',
-    ),
-    itemBuilder(url: 'https://eg.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/67/788302/1.jpg?7924',
-      productName: 'Home Decoration',
-      price: '1500 \$',
-      discount: '1750 \$',
-    ),
-    itemBuilder(url: 'https://amalabeauty.com/cdn/shop/files/Full_Travel_Closer_2_2000x.jpg?v=1683558212',
-      productName: 'Skincare',
-      price: '1500 \$',
-      discount: '1750 \$',
-    ),
-    itemBuilder(url: 'https://www.loccitane.com/dw/image/v2/BDQL_PRD/on/demandware.static/-/Library-Sites-OCC_SharedLibrary/default/dwa2626b7c/images/CLP/women_fragrances_module.jpg?sw=754&sh=477',
-      productName: 'Fragrances',
-      price: '1500 \$',
-      discount: '1750 \$',
-    ),
-    itemBuilder(url: 'https://hips.hearstapps.com/hmg-prod/images/how-to-save-money-on-groceries-1673472736.png?crop=0.671xw:1.00xh;0,0&resize=1200:*',
-      productName: 'Groceries',
-      price: '1500 \$',
-      discount: '1750 \$',
-    ),
-  ];
-  int indexxxxxxxxx = 0;
+  // List<Widget> itemType = [
+  //   itemBuilder(url:  'https://www.trustedreviews.com/wp-content/uploads/sites/54/2023/02/Samsung-Galaxy-S23-Ultra-review-5-1024x580.jpg',
+  //       productName: 'Smart Phone',
+  //       price: '1500 \$',
+  //       discount: '1750 \$',
+  //   ),
+  //   itemBuilder(url: 'https://www.asus.com/media/Odin/Websites/global/Series/9.png',
+  //     productName: 'Laptops',
+  //     price: '1500 \$',
+  //     discount: '1750 \$',
+  //   ),
+  //   itemBuilder(url: 'https://eg.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/67/788302/1.jpg?7924',
+  //     productName: 'Home Decoration',
+  //     price: '1500 \$',
+  //     discount: '1750 \$',
+  //   ),
+  //   itemBuilder(url: 'https://amalabeauty.com/cdn/shop/files/Full_Travel_Closer_2_2000x.jpg?v=1683558212',
+  //     productName: 'Skincare',
+  //     price: '1500 \$',
+  //     discount: '1750 \$',
+  //   ),
+  //   itemBuilder(url: 'https://www.loccitane.com/dw/image/v2/BDQL_PRD/on/demandware.static/-/Library-Sites-OCC_SharedLibrary/default/dwa2626b7c/images/CLP/women_fragrances_module.jpg?sw=754&sh=477',
+  //     productName: 'Fragrances',
+  //     price: '1500 \$',
+  //     discount: '1750 \$',
+  //   ),
+  //   itemBuilder(url: 'https://hips.hearstapps.com/hmg-prod/images/how-to-save-money-on-groceries-1673472736.png?crop=0.671xw:1.00xh;0,0&resize=1200:*',
+  //     productName: 'Groceries',
+  //     price: '1500 \$',
+  //     discount: '1750 \$',
+  //   ),
+  // ];
+  int catIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData = MediaQuery.of(context);
@@ -109,7 +112,8 @@ class _HomeLayoutState extends State<HomePage> {
                                 child: Container(
                                   height: 50.0,
                                   child: TextFormField(
-                                    onTap: () {},
+                                    onTap: () {
+                                    },
                                     decoration: InputDecoration(
                                       label: Text(
                                         'Search for a Product ...',
@@ -150,13 +154,13 @@ class _HomeLayoutState extends State<HomePage> {
                       height: 50,
                       color: Colors.white,
                       child: ListView.separated(
+                        physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) => GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    selectedIndex = index;
-                                    indexxxxxxxxx = index;
-                                    print(index);
+                                    catIndex = index;
+                                    //print(index);
                                   });
                                 },
                                 child: Column(
@@ -193,11 +197,25 @@ class _HomeLayoutState extends State<HomePage> {
                     ),
                   ),
                   //body
-                  gridBuilder(
-                    context: context,
-                    itemCount: test[indexxxxxxxxx],
-                    child: itemType[indexxxxxxxxx],
-                  ),
+                GridView.builder(
+                  itemCount: Manga[catIndex].length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 0.9, crossAxisCount: 2),
+                  itemBuilder: (context, index) { //
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => DetailsPage(product: Manga[catIndex][index])));
+                      },
+                      child: itemBuilder(url: '${Manga[catIndex][index]['thumbnail']}',
+                        productName:  '${Manga[catIndex][index]['title']}',
+                        price: Manga[catIndex][index]['price'],
+                        discount:Manga[catIndex][index]['discountPercentage'],
+                      ),
+                    );
+                  }),
                 ],
               ),
             ),

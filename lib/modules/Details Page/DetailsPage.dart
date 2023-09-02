@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 
 import '../../shared/components/components.dart';
-
+late final Map<String,dynamic> myProduct;
 class DetailsPage extends StatefulWidget {
-  const DetailsPage({super.key});
+
+    DetailsPage({
+    required Map<String,dynamic> product,
+}){
+    myProduct = product;
+    super.key;
+  }
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  bool isTap = false;
   bool favorite = true;
   int itemCount = 1;
   int currentImage = 0;
-  int stock = 17;
-  final int max_items = 17;
+  int stock = myProduct['stock'];
+  final int max_items = myProduct['stock'];
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +47,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 children: [
                   Image(
                     image: NetworkImage(
-                        'https://www.asus.com/media/Odin/Websites/global/Series/9.png'),
+                        isTap? myProduct['images'][currentImage] : myProduct['thumbnail']),
                     fit: BoxFit.fitHeight,
                     height: 330,
                     width: double.infinity,
@@ -56,11 +63,12 @@ class _DetailsPageState extends State<DetailsPage> {
                                 print(
                                     "pressed in this pic num $index that will be show");
                                 currentImage = index;
+                                isTap = true;
                               });
                             },
                             child: Image(
                               image: NetworkImage(
-                                  "https://www.asus.com/media/Odin/Websites/global/Series/9.png"),
+                                  myProduct['images'][index]),
                               width: 70,
                               height: 60,
                               fit: BoxFit.fitHeight,
@@ -72,7 +80,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             height: 10,
                           );
                         },
-                        itemCount: 20,
+                        itemCount: myProduct['images'].length,
                         scrollDirection: Axis.vertical),
                   )
                 ],
@@ -113,19 +121,19 @@ class _DetailsPageState extends State<DetailsPage> {
                           width: 6,
                         );
                       },
-                      itemCount: 10,
+                      itemCount: myProduct['images'].length,
                       shrinkWrap: true),
                 ),
               ),
               Text(
-                "Lenovo WH-100xM4",
+                myProduct['title'],
                 style: TextStyle(fontSize: 27, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 15,
               ),
               Text(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever ",
+                myProduct['description'],
                 style: TextStyle(color: Colors.grey),
               ),
               SizedBox(
@@ -137,7 +145,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 //textBaseline: TextBaseline.alphabetic,
                 children: [
                   Text(
-                    "\$ 1806",
+                  (myProduct['price'] - myProduct['price'] * (myProduct['discountPercentage'] / 100)).toString(),
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
@@ -147,7 +155,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     padding: const EdgeInsetsDirectional.only(top: 7),
                     child: Text.rich(
                       TextSpan(
-                        text: "1905",
+                       text : myProduct['price'].toString(),
                         style: TextStyle(
                             color: Colors.red,
                             decoration: TextDecoration.lineThrough,

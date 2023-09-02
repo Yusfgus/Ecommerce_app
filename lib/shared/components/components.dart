@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../modules/Login Page/LoginScreen.dart';
 
+double? number = double.tryParse("12.34");
 Widget defaultMaterialButton({
   required String text,
   bool haveBorder = false,
@@ -110,110 +111,115 @@ Widget defaultTextFormField({
 Widget itemBuilder({
   required String url,
   required String productName,
-  required String price,
-  required String discount,
-}) =>
-    Padding(
-      padding: const EdgeInsetsDirectional.only(
-        start: 5.0,
-        end: 5.0,
-        bottom: 12.0,
+  required int price,
+  required double discount,
+}) {
+
+  // double? Price = double.tryParse(price);
+  // double? Discount = double.tryParse(discount);
+  // double? result = (Price! - Price! * (Discount! /100)) ;
+  return   Padding(
+  padding: const EdgeInsetsDirectional.only(
+    start: 5.0,
+    end: 5.0,
+    bottom: 12.0,
+  ),
+  child: Container(
+    height: 260,
+    width: 174,
+    decoration: BoxDecoration(
+      // color: Color(0xFFE2F2FA),
+      borderRadius: BorderRadius.circular(20.0),
+      border: Border.all(
+        color: Color(0xFF3A2A08),
+        // Set the desired border color here
+        width: 1, // Set the desired border width here
       ),
-      child: Container(
-        height: 260,
-        width: 174,
-        decoration: BoxDecoration(
-          // color: Color(0xFFE2F2FA),
-          borderRadius: BorderRadius.circular(20.0),
-          border: Border.all(
-            color: Color(0xFF3A2A08),
-            // Set the desired border color here
-            width: 1, // Set the desired border width here
+      color : Colors.white,
+    ),
+    child: Column(
+      children: [
+        Expanded(
+          child: Container(
+            height: 160,
+            width: 182,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                20.0,
+              ),
+            ),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: Image(
+              image: NetworkImage(url),
+              fit: BoxFit.cover,
+              height: 150.0,
+              width: 130.0,
+            ),
           ),
-          color: Color(0xFFFDF5D2),
         ),
-        child: Column(
+        SizedBox(
+          height: 5.0,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
+            Padding(
+              padding: const EdgeInsetsDirectional.only(
+                start: 5.0,
+              ),
               child: Container(
-                height: 160,
-                width: 182,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    20.0,
+                width: 100.0,
+                child: Text(
+                  productName,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13.0,
                   ),
-                ),
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: Image(
-                  image: NetworkImage(url),
-                  fit: BoxFit.cover,
-                  height: 150.0,
-                  width: 130.0,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),
-            SizedBox(
-              height: 5.0,
+            Expanded(
+              child: SizedBox(
+                // width: 15.0,
+              ),
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                    start: 5.0,
-                  ),
-                  child: Container(
-                    width: 100.0,
-                    child: Text(
-                      productName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.0,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+            Padding(
+              padding: const EdgeInsetsDirectional.only(
+                end: 5.0,
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    (price - price *(discount / 100)).toStringAsFixed(2),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 13.0,
                     ),
                   ),
-                ),
-                Expanded(
-                  child: SizedBox(
-                      // width: 15.0,
-                      ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                    end: 5.0,
+                  SizedBox(
+                    height: 3.0,
                   ),
-                  child: Column(
-                    children: [
-                      Text(
-                        price,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 13.0,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 3.0,
-                      ),
-                      Text(
-                        discount,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 12.0,
-                          color: Colors.grey[900],
-                          decoration: TextDecoration.lineThrough,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    price.toString(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12.0,
+                      color: Colors.grey[900],
+                      decoration: TextDecoration.lineThrough,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
-      ),
-    );
+      ],
+    ),
+  ),
+);}
+
 
 Widget tapBarItem({
   required String label,
@@ -258,27 +264,6 @@ Widget tapBarItem({
       ),
     );
 
-Widget gridBuilder({
-  //required int index,
-  required BuildContext context,
-  required int itemCount,
-  void Function()? tapping,
-  required Widget child,
-}) =>
-    GridView.builder(
-        itemCount: itemCount,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 0.9, crossAxisCount: 2),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              print(index);
-            },
-            child: child,
-          );
-        });
 
 Widget UserInfo(
     {required String title,
