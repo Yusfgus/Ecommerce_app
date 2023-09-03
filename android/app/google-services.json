@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "126955669846",
-    "project_id": "nemo-firebase",
-    "storage_bucket": "nemo-firebase.appspot.com"
+    "project_number": "555319936084",
+    "project_id": "nemo-b19da",
+    "storage_bucket": "nemo-b19da.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:126955669846:android:dfd71e2ac4defd54deaef7",
+        "mobilesdk_app_id": "1:555319936084:android:04a501a97eba7210e1d9c1",
         "android_client_info": {
           "package_name": "com.example.nemo_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "126955669846-rupnvc4jj3sp177qalpnjs99s52e1spg.apps.googleusercontent.com",
+          "client_id": "555319936084-59ecjt7khr8cnu765ci0qfedrkoc1hvi.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCaUKZPW4xoXAtURpbGYvmHqixnrFdq9dA"
+          "current_key": "AIzaSyA6jWPNsHytKwBnbAeEHEen2N_M0-eDBsg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "126955669846-rupnvc4jj3sp177qalpnjs99s52e1spg.apps.googleusercontent.com",
+              "client_id": "555319936084-59ecjt7khr8cnu765ci0qfedrkoc1hvi.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
