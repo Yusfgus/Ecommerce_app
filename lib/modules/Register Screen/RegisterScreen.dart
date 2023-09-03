@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nemo_app/modules/Login%20Page/LoginScreen.dart';
+
 import '../../shared/Cubit/cubit.dart';
 import '../../shared/Cubit/states.dart';
 import '../../shared/components/components.dart';
@@ -16,12 +18,22 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   var formKey = GlobalKey<FormState>();
 
+  var userController = TextEditingController();
+  var passController = TextEditingController();
+
+  void SignUp() async {
+    FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: userController.text.trim(),
+        password: passController.text.trim());
+    Navigator.of(context).pushNamed('A');
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => AppCubit(),
       child: BlocConsumer<AppCubit, AppStates>(
-        listener:(context , index){},
+        listener: (context, index) {},
         builder: (BuildContext context, AppStates state) {
           AppCubit cubit = AppCubit.get(context);
           return Scaffold(
@@ -66,7 +78,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     //username
                     defaultTextFormField(
                       label: 'Username',
-                      controller: cubit.userControllerReg,
+                      controller: userController,
                       validate: (value) {
                         if (value!.isEmpty) {
                           return 'Username must not be empty';
@@ -82,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     //password
                     defaultTextFormField(
                       label: 'Password',
-                      controller: cubit.passControllerReg,
+                      controller: passController,
                       validate: (value) {
                         if (value!.isEmpty) {
                           return 'Password must not be empty';
@@ -95,7 +107,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       obscure: () {
                         cubit.passwordChangeReg();
                       },
-                      sufIcon: cubit.isPasswordReg ? Icons.visibility : Icons.visibility_off,
+                      sufIcon: cubit.isPasswordReg
+                          ? Icons.visibility
+                          : Icons.visibility_off,
                     ),
                     Padding(
                       padding: const EdgeInsetsDirectional.only(
@@ -117,6 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     defaultMaterialButton(
                       valid: () {
                         if (formKey.currentState!.validate()) {
+                          SignUp();
                           showAlertDialog(
                               context: context,
                               label: 'Registration Done Successfully!');
@@ -171,7 +186,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
           );
-        } ,
+        },
       ),
     );
   }

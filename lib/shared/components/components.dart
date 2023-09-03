@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 double? number = double.tryParse("12.34");
+
 Widget defaultMaterialButton({
   required String text,
   bool haveBorder = false,
@@ -349,11 +350,12 @@ Widget UserInfo(
   );
 }
 
-Widget CustomAppBar(
-        {required String title,
-        required Color backcolor,
-        required Color textColor,
-        void Function()? isPressed ,}) =>
+Widget CustomAppBar({
+  required String title,
+  required Color backcolor,
+  required Color textColor,
+  void Function()? isPressed,
+}) =>
     Container(
       height: 60,
       decoration: BoxDecoration(

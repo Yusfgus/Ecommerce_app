@@ -42,14 +42,13 @@ class AppCubit extends Cubit<AppStates> {
   int max_items = 0;
 
   // Login page variables
-  var userController = TextEditingController();
-  var passController = TextEditingController();
+
   bool isPassword = true;
   bool isChecked = false;
 
   // Register page variables
-  var userControllerReg = TextEditingController();
-  var passControllerReg = TextEditingController();
+  // var userControllerReg = TextEditingController();
+  // var passControllerReg = TextEditingController();
   bool isPasswordReg = true;
   bool isCheckedReg = false;
 
@@ -71,16 +70,18 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppItemClickedState());
   }
 
-  void getInfo()
-  {
+  void getInfo() {
     emit(GetDataLoadingState());
-    getData().then((value) => {
-      emit(GetDataFromApiSuccessState()),
-    }).catchError((error){
+    getData()
+        .then((value) => {
+              emit(GetDataFromApiSuccessState()),
+            })
+        .catchError((error) {
       print(error.toString());
       emit(GetDataFromApiErrorState(error.toString()));
     });
   }
+
   void tapBarItemClicked(int index) {
     catIndex = index;
     selectedIndex = index;
@@ -89,48 +90,46 @@ class AppCubit extends Cubit<AppStates> {
 
   // Details page functions
 
-  void imageClick(int index)
-  {
+  void imageClick(int index) {
     currentImage = index;
     isTap = true;
     emit(AppImageClickedState());
   }
-  void favouriteChange()
-  {
+
+  void favouriteChange() {
     favorite = !favorite;
     emit(AppFavouriteChangeState());
   }
-  void itemCountChange()
-  {
+
+  void itemCountChange() {
     if (itemCount != 1) itemCount--;
     emit(AppItemCountChangeState());
   }
-  void itemCountCondition()
-  {
+
+  void itemCountCondition() {
     if (itemCount < max_items) itemCount++;
     emit(AppItemCountConditionState());
   }
+
   // login page functions
-  void checkedChange(bool value)
-  {
+  void checkedChange(bool value) {
     isChecked = value;
     emit(AppCheckedChangeState());
   }
-  void passwordChange()
-  {
+
+  void passwordChange() {
     isPassword = !isPassword;
     emit(AppPasswordChangeState());
   }
+
   //Register page functions
-  void checkedChangeReg(bool value)
-  {
+  void checkedChangeReg(bool value) {
     isCheckedReg = value;
     emit(AppCheckedChangeRegState());
   }
-  void passwordChangeReg()
-  {
+
+  void passwordChangeReg() {
     isPasswordReg = !isPasswordReg;
     emit(AppPasswordChangeRegState());
   }
-
 }
