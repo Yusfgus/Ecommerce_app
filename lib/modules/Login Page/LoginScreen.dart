@@ -32,7 +32,11 @@ class _RegisterScreenState extends State<LoginScreen> {
         .signInWithEmailAndPassword(
             email: userController.text.trim(),
             password: passController.text.trim())
-        .then((value) => Navigator.of(context).pushNamed('A'));
+        .then((value) => Navigator.of(context).pushNamed('A')).catchError((error){
+      showAlertDialog(
+          context: context,
+          label: 'Error Email or Password');
+    });
     //  Navigator.of(context).pushNamed('A');
   }
 

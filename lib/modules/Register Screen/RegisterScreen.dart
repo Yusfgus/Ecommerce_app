@@ -136,9 +136,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       valid: () {
                         if (formKey.currentState!.validate()) {
                           SignUp();
-                          showAlertDialog(
-                              context: context,
-                              label: 'Registration Done Successfully!');
                         }
                       },
                       text: 'Sign up',

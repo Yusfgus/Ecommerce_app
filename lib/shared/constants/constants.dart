@@ -28,7 +28,7 @@ void showAlertDialog({
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: AlertDialog(
-          title: Text('Hint'),
+          title: Text('Warning'),
           content: Text(label),
           actions: [
             Center(
@@ -47,7 +47,7 @@ void showAlertDialog({
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Login',
+                      'ok',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 15.0,
