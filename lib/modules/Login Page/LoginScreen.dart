@@ -28,10 +28,12 @@ class _RegisterScreenState extends State<LoginScreen> {
   }
 
   Future signIn() async {
-    FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: userController.text.trim(),
-        password: passController.text.trim());
-    Navigator.of(context).pushNamed('A');
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: userController.text.trim(),
+            password: passController.text.trim())
+        .then((value) => Navigator.of(context).pushNamed('A'));
+    //  Navigator.of(context).pushNamed('A');
   }
 
   @override
