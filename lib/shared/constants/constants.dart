@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import '../../modules/Login Page/LoginScreen.dart';
-
+late final Map<String, dynamic> myProduct;
 List<List<dynamic>> Manga =[];
 // List<dynamic> smartPhonesList = [];
 // List<dynamic> laptopsList = [];
@@ -150,7 +150,7 @@ class _SlideFadeTransitionState extends State<SlideFadeTransition>
 
 
 // Api request
-Future<void> getData() async {
+Future<dynamic> getData() async {
   final response = await http.get(Uri.parse('https://dummyjson.com/products'));
   if (response.statusCode == 200) {
     final decodedResponse = json.decode(response.body);
@@ -164,8 +164,7 @@ Future<void> getData() async {
       products.where((product) => product['category'] == 'fragrances').toList(),
       products.where((product) => product['category'] == 'groceries').toList(),
     ];
-
-
+    return Manga;
   } else {
     print('Failed to fetch data');
   }

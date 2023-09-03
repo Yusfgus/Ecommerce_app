@@ -50,6 +50,9 @@ dependencies:
   dio: ^5.3.2
   sqflite: ^2.2.8+4
   path: ^1.8.2
+  lottie: ^2.6.0
+  flutter_staggered_animations: ^1.1.1
+
 
 
 dev_dependencies:

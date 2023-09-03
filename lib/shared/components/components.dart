@@ -190,7 +190,7 @@ Widget itemBuilder({
                 child: Column(
                   children: [
                     Text(
-                      (price - price * (discount / 100)).toStringAsFixed(2),
+                      "${(price - price * (discount / 100)).toStringAsFixed(1)} \$",
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 13.0,
@@ -200,7 +200,7 @@ Widget itemBuilder({
                       height: 3.0,
                     ),
                     Text(
-                      price.toString(),
+                      "${price.toString()} \$",
                       style: TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 12.0,
@@ -352,7 +352,8 @@ Widget UserInfo(
 Widget CustomAppBar(
         {required String title,
         required Color backcolor,
-        required Color textColor}) =>
+        required Color textColor,
+        void Function()? isPressed ,}) =>
     Container(
       height: 60,
       decoration: BoxDecoration(
@@ -370,11 +371,9 @@ Widget CustomAppBar(
           padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
           child: Center(
             child: Row(children: [
-              // IconButton(
-              //     onPressed: () {
-              //       print("Back Button Pressed (Detail Page)");
-              //     },
-              //     icon: Icon(Icons.arrow_back_ios_rounded)),
+              IconButton(
+                  onPressed: isPressed,
+                  icon: Icon(Icons.arrow_back_ios_rounded)),
               Expanded(
                   child: Text(
                 title,

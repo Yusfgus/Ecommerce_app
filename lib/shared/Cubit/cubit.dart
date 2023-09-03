@@ -6,6 +6,7 @@ import 'package:nemo_app/modules/Home%20Page/HomePage.dart';
 import 'package:nemo_app/shared/Cubit/states.dart';
 
 import '../../modules/Profile Page/ProfilePage.dart';
+import '../constants/constants.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialStates());
@@ -13,7 +14,7 @@ class AppCubit extends Cubit<AppStates> {
   //method to get a object
   static AppCubit get(context) => BlocProvider.of(context);
 
-  // variables
+  // variables home page
   int currentIndex = 0;
   List<Widget> currentScreen = [
     const HomePage(),
@@ -21,9 +22,38 @@ class AppCubit extends Cubit<AppStates> {
     const FavoritePage(),
     const ProfilePage(),
   ];
-
   List<bool> itemSelected = [true, false, false, false, false, false];
-  bool colort = false;
+  final List<String> categories = [
+    'Smart Phones',
+    'Laptops',
+    'Home Decoration',
+    'Skincare',
+    'Fragrances',
+    'Groceries',
+  ];
+  int selectedIndex = 0;
+  int catIndex = 0;
+
+  //Details page variables
+  bool isTap = false;
+  bool favorite = true;
+  int itemCount = 1;
+  int currentImage = 0;
+  int max_items = 0;
+
+  // Login page variables
+  var userController = TextEditingController();
+  var passController = TextEditingController();
+  bool isPassword = true;
+  bool isChecked = false;
+
+  // Register page variables
+  var userControllerReg = TextEditingController();
+  var passControllerReg = TextEditingController();
+  bool isPasswordReg = true;
+  bool isCheckedReg = false;
+
+  // functions home page
 
   void changeIndex(int index) {
     currentIndex = index;
@@ -40,4 +70,67 @@ class AppCubit extends Cubit<AppStates> {
     print(index);
     emit(AppItemClickedState());
   }
+
+  void getInfo()
+  {
+    emit(GetDataLoadingState());
+    getData().then((value) => {
+      emit(GetDataFromApiSuccessState()),
+    }).catchError((error){
+      print(error.toString());
+      emit(GetDataFromApiErrorState(error.toString()));
+    });
+  }
+  void tapBarItemClicked(int index) {
+    catIndex = index;
+    selectedIndex = index;
+    emit(AppTapBarItemClickedState());
+  }
+
+  // Details page functions
+
+  void imageClick(int index)
+  {
+    currentImage = index;
+    isTap = true;
+    emit(AppImageClickedState());
+  }
+  void favouriteChange()
+  {
+    favorite = !favorite;
+    emit(AppFavouriteChangeState());
+  }
+  void itemCountChange()
+  {
+    if (itemCount != 1) itemCount--;
+    emit(AppItemCountChangeState());
+  }
+  void itemCountCondition()
+  {
+    if (itemCount < max_items) itemCount++;
+    emit(AppItemCountConditionState());
+  }
+  // login page functions
+  void checkedChange(bool value)
+  {
+    isChecked = value;
+    emit(AppCheckedChangeState());
+  }
+  void passwordChange()
+  {
+    isPassword = !isPassword;
+    emit(AppPasswordChangeState());
+  }
+  //Register page functions
+  void checkedChangeReg(bool value)
+  {
+    isCheckedReg = value;
+    emit(AppCheckedChangeRegState());
+  }
+  void passwordChangeReg()
+  {
+    isPasswordReg = !isPasswordReg;
+    emit(AppPasswordChangeRegState());
+  }
+
 }

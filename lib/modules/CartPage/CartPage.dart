@@ -193,7 +193,7 @@ class _CartPageState extends State<CartPage> {
             });
             bottomSheet = true;
           }
-          setState(() {});
+          //setState(() {});
         },
         backgroundColor: Colors.white,
         child: bottomSheet
