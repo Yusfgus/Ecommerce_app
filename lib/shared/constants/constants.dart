@@ -1,16 +1,21 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 import '../../modules/Login Page/LoginScreen.dart';
-late final Map<String, dynamic> myProduct;
-List<List<dynamic>> Manga =[];
+
+late Map<String, dynamic> myProduct;
+List<List<dynamic>> Manga = [];
+
 // List<dynamic> smartPhonesList = [];
 // List<dynamic> laptopsList = [];
 // List<dynamic> homeDecList = [];
 // List<dynamic> skincareList = [];
 // List<dynamic> fragrancesList = [];
 // List<dynamic> groceriesList = [];
+
 void showAlertDialog({
   required BuildContext context,
   required String label,
@@ -148,7 +153,6 @@ class _SlideFadeTransitionState extends State<SlideFadeTransition>
   }
 }
 
-
 // Api request
 Future<dynamic> getData() async {
   final response = await http.get(Uri.parse('https://dummyjson.com/products'));
@@ -157,9 +161,13 @@ Future<dynamic> getData() async {
     final products = decodedResponse['products'];
 
     Manga = [
-      products.where((product) => product['category'] == 'smartphones').toList(),
+      products
+          .where((product) => product['category'] == 'smartphones')
+          .toList(),
       products.where((product) => product['category'] == 'laptops').toList(),
-      products.where((product) => product['category'] == 'home-decoration').toList(),
+      products
+          .where((product) => product['category'] == 'home-decoration')
+          .toList(),
       products.where((product) => product['category'] == 'skincare').toList(),
       products.where((product) => product['category'] == 'fragrances').toList(),
       products.where((product) => product['category'] == 'groceries').toList(),

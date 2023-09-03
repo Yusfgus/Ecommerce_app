@@ -31,6 +31,7 @@ class _RegisterScreenState extends State<LoginScreen> {
     FirebaseAuth.instance.signInWithEmailAndPassword(
         email: userController.text.trim(),
         password: passController.text.trim());
+    Navigator.of(context).pushNamed('A');
   }
 
   @override

@@ -22,6 +22,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var passController = TextEditingController();
 
   void SignUp() async {
+    print(userController.text);
+    print(
+        "=====================================================================");
+    print(passController.text);
     FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: userController.text.trim(),
         password: passController.text.trim());
