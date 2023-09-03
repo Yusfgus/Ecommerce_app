@@ -34,3 +34,7 @@ class AppPasswordChangeState extends AppStates {}
 class AppCheckedChangeRegState extends AppStates {}
 
 class AppPasswordChangeRegState extends AppStates {}
+
+class AppIsPressedClickState extends AppStates {}
+
+class AppIsHighlightedClickState extends AppStates {}

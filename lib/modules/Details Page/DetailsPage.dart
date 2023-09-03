@@ -14,7 +14,6 @@ class DetailsPage extends StatefulWidget {
     myProduct = product;
     super.key;
   }
-
   @override
   State<DetailsPage> createState() => _DetailsPageState();
 }
@@ -248,19 +247,50 @@ class _DetailsPageState extends State<DetailsPage> {
                                     ),
                                     Row(
                                       children: [
-                                        IconButton(
-                                            onPressed: () {
-                                              cubit.favouriteChange();
-                                            },
-                                            icon: cubit.favorite
-                                                ? Icon(
-                                              Icons.favorite,
-                                              color: Colors.amber,
-                                            )
-                                                : Icon(
-                                              Icons.favorite_border,
-                                              color: Colors.grey,
-                                            )),
+                                        InkWell(
+                                          highlightColor: Colors.transparent,
+                                          splashColor: Colors.transparent,
+                                          onHighlightChanged: (value) {
+                                            cubit.isHighlightedClick();
+                                          },
+                                          onTap: () {
+                                            cubit.isPressedClick();
+                                          },
+                                          child: AnimatedContainer(
+                                            margin: EdgeInsets.all(cubit.isHighlighted ? 0 : 2.5),
+                                            height: cubit.isHighlighted ? 40 : 45,
+                                            width: cubit.isHighlighted ? 50 : 45,
+                                            curve: Curves.fastLinearToSlowEaseIn,
+                                            duration: Duration(milliseconds: 300),
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black.withOpacity(0.3),
+                                                  blurRadius: 20,
+                                                  offset: Offset(5, 10),
+                                                ),
+                                              ],
+                                              color: Colors.white,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child:  IconButton(
+                                                onPressed: () {
+                                                  cubit.favouriteChange();
+                                                },
+                                                icon: cubit.favorite
+                                                    ? Icon(
+                                                  Icons.favorite,
+                                                  color: Colors.amber,
+                                                )
+                                                    : Icon(
+                                                  Icons.favorite_border,
+                                                  color: Colors.black,
+                                                )),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20.0,
+                                        ),
                                         // "rating":4.69
                                         Text(
                                           "Rate : ${myProduct["rating"]} ",
@@ -270,7 +300,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ],

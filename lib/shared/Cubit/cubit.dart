@@ -36,10 +36,12 @@ class AppCubit extends Cubit<AppStates> {
 
   //Details page variables
   bool isTap = false;
-  bool favorite = true;
+  bool favorite = false;
   int itemCount = 1;
   int currentImage = 0;
   int max_items = 0;
+  bool isPressed = false;
+  bool isHighlighted = true;
 
   // Login page variables
 
@@ -110,7 +112,16 @@ class AppCubit extends Cubit<AppStates> {
     if (itemCount < max_items) itemCount++;
     emit(AppItemCountConditionState());
   }
-
+  void isPressedClick()
+  {
+    isPressed = !isPressed;
+    emit(AppIsPressedClickState());
+  }
+  void isHighlightedClick()
+  {
+    isHighlighted = !isHighlighted;
+    emit(AppIsHighlightedClickState());
+  }
   // login page functions
   void checkedChange(bool value) {
     isChecked = value;
@@ -121,7 +132,6 @@ class AppCubit extends Cubit<AppStates> {
     isPassword = !isPassword;
     emit(AppPasswordChangeState());
   }
-
   //Register page functions
   void checkedChangeReg(bool value) {
     isCheckedReg = value;
@@ -132,4 +142,5 @@ class AppCubit extends Cubit<AppStates> {
     isPasswordReg = !isPasswordReg;
     emit(AppPasswordChangeRegState());
   }
+
 }

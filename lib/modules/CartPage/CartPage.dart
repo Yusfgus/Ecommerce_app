@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:nemo_app/shared/components/components.dart';
 
 class CartPage extends StatefulWidget {
@@ -22,6 +23,7 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
+    double _w = MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
       key: scaffoldKey,
@@ -32,23 +34,35 @@ class _CartPageState extends State<CartPage> {
               backcolor: Colors.white,
               textColor: Colors.black),
           Expanded(
-            child: ListView.separated(
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              //physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => myItems(
-                  imagePath: "assets/myItemImage.png",
-                  title: "Laptop",
-                  description:
-                      "Lorem Ipsum is simply dummy text of \nthe printing and typesetting industry",
-                  price: 150,
-                  discount: 20),
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  width: 0,
-                );
-              },
-              itemCount: 10,
+            child: AnimationLimiter(
+              child: ListView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.all(_w / 200),
+                physics:
+                BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                itemCount: 20,
+                itemBuilder: (BuildContext context, int index) {
+                  return AnimationConfiguration.staggeredList(
+                    position: index,
+                    delay: Duration(milliseconds: 100),
+                    child: SlideAnimation(
+                      duration: Duration(milliseconds: 2500),
+                      curve: Curves.fastLinearToSlowEaseIn,
+                      child: FadeInAnimation(
+                        curve: Curves.fastLinearToSlowEaseIn,
+                        duration: Duration(milliseconds: 2500),
+                        child:myItems(
+                            imagePath: "assets/myItemImage.png",
+                            title: "Laptop",
+                            description:
+                            "Lorem Ipsum is simply dummy text of \nthe printing and typesetting industry",
+                            price: 150,
+                            discount: 20),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
           DottedBorder(

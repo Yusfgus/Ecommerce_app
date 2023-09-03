@@ -150,7 +150,7 @@ Widget itemBuilder({
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: Image(
                 image: NetworkImage(url),
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
                 height: 150.0,
                 // width: 130.0,
               ),

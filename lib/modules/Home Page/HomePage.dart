@@ -200,7 +200,7 @@ class _HomeLayoutState extends State<HomePage> {
                 ),
               ),
             );},
-            fallback: (BuildContext context)=> Center(child: Lottie.asset('assets/loading.json')),
+            fallback: (BuildContext context)=> Center(child: Lottie.asset('assets/loading.json',width: 250.0,height: 250.0)),
           );
         },
       ),
