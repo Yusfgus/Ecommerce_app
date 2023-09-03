@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../shared/components/components.dart';
+import '../../shared/constants/constants.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -14,7 +15,8 @@ class _ProfilePageState extends State<ProfilePage> {
   bool passEnable = false;
   bool addressEnable = false;
   bool phoneEnable = false;
-
+  var name = userController.text;
+  var pass = passController.text;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -59,13 +61,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   bottom: 0,
                   right: 38,
                   child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 75,
                     child: Image.asset(
                       "assets/avatar.png",
                       width: 147,
                       height: 147,
                     ),
-                    backgroundColor: Colors.white,
-                    radius: 75,
                   ),
                 ),
               ],
@@ -76,12 +78,12 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 UserInfo(
                     title: "Name",
-                    value: "Yousef Mohamed",
+                    value: name,
                     icon: Icons.person_2_outlined,
                     enable: nameEnable),
                 UserInfo(
                     title: "Password",
-                    value: "blablabla",
+                    value: pass,
                     icon: Icons.lock_open_sharp,
                     enable: passEnable),
                 UserInfo(

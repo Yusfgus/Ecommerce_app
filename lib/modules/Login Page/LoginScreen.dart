@@ -17,8 +17,7 @@ class LoginScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<LoginScreen> {
   var formKey = GlobalKey<FormState>();
-  var userController = TextEditingController();
-  var passController = TextEditingController();
+
 
   @override
   void dispose() {

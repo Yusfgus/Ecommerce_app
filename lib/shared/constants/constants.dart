@@ -8,6 +8,8 @@ import '../../modules/Login Page/LoginScreen.dart';
 
 late Map<String, dynamic> myProduct;
 List<List<dynamic>> Manga = [];
+var userController = TextEditingController();
+var passController = TextEditingController();
 
 // List<dynamic> smartPhonesList = [];
 // List<dynamic> laptopsList = [];
