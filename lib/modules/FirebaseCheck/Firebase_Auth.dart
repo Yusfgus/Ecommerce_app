@@ -4,7 +4,7 @@ import 'package:nemo_app/layout/Home%20Layout/HomeLayout.dart';
 import 'package:nemo_app/modules/Register%20Screen/RegisterScreen.dart';
 
 class Auth extends StatelessWidget {
-  const Auth({super.key});
+  const Auth({super.key}) ;
 
   @override
   Widget build(BuildContext context) {
