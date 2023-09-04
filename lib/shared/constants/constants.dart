@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,6 +11,7 @@ late Map<String, dynamic> myProduct;
 List<List<dynamic>> Manga = [];
 var userController = TextEditingController();
 var passController = TextEditingController();
+final user = FirebaseAuth.instance.currentUser!;
 
 // List<dynamic> smartPhonesList = [];
 // List<dynamic> laptopsList = [];
