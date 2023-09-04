@@ -30,6 +30,8 @@ class _DetailsPageState extends State<DetailsPage> {
         listener: (context, index) {},
         builder: (BuildContext context, AppStates state) {
           AppCubit cubit = AppCubit.get(context);
+          cubit.inCart = userCart.contains(myProduct['id']);
+          cubit.favorite = userFavourites.contains(myProduct['id']);
           cubit.max_items = myProduct['stock'];
           return SafeArea(
             child: Scaffold(
@@ -275,6 +277,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                             ),
                                             child:  IconButton(
                                                 onPressed: () {
+                                                  cubit.favorite? userFavourites.remove(myProduct['id']): userFavourites.add(myProduct['id']);
                                                   cubit.favouriteChange();
                                                 },
                                                 icon: cubit.favorite
@@ -328,7 +331,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                     Padding(
                                       padding: const EdgeInsetsDirectional
                                           .only(
-                                          start: 18, end: 12, top: 5),
+                                          start: 2, end: 2, top: 5),
                                       child: Text(
                                         "${cubit.itemCount}",
                                         style: TextStyle(
@@ -378,12 +381,15 @@ class _DetailsPageState extends State<DetailsPage> {
                                           color: Colors.amber,
                                         ),
                                         child: MaterialButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            cubit.inCart? userCart.remove(myProduct['id']): userCart.add(myProduct['id']);
+                                            cubit.inCartChange();
+                                          },
                                           child: Padding(
                                             padding: const EdgeInsets.all(
-                                                12.0),
+                                                5.0),
                                             child: Text(
-                                              "Add To Cart",
+                                              cubit.inCart? "Remove from Cart": "Add to Cart",
                                               style: TextStyle(
                                                 fontSize: 15.0,
                                                 fontWeight: FontWeight.bold,

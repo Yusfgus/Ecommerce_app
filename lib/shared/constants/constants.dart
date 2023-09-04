@@ -21,14 +21,18 @@ String username = "";
 var userController = TextEditingController();
 var passController = TextEditingController();
 // final user = FirebaseAuth.instance.currentUser!;
-
+double totalPrice = 0;
 
 ReadData() async {
   print("start reading");
-  Data = await sqlDb.getUserData();
-  print("print user $username Data: $Data");
-  userFavourites = stringToList(Data[0]['fav']);
-  userCart = stringToList(Data[0]['cart']);
+  //Data = await sqlDb.getUserData();
+  // print("print user $username Data: $Data");
+  // userFavourites = stringToList(Data[0]['fav']);
+  // userCart = stringToList(Data[0]['cart']);
+
+  userFavourites = [1,3,5];
+  userCart = [2,4,5];
+
   print("finish reading");
 }
 

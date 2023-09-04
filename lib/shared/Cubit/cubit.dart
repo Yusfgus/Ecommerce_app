@@ -37,6 +37,7 @@ class AppCubit extends Cubit<AppStates> {
   //Details page variables
   bool isTap = false;
   bool favorite = false;
+  bool inCart = false;
   int itemCount = 1;
   int currentImage = 0;
   int max_items = 0;
@@ -101,6 +102,22 @@ class AppCubit extends Cubit<AppStates> {
   void favouriteChange() {
     favorite = !favorite;
     emit(AppFavouriteChangeState());
+  }
+
+  void inCartChange() {
+    inCart = !inCart;
+    emit(inCartChangeState());
+  }
+
+  void totalPriceChange(){
+    // deleteFromCart();
+    for(int i=0; i<userCart.length; ++i){
+      var pro = AppProducts.where((product) => product['id'] == userCart[i]).toList()[0];
+      double price = pro['price']*1.0;
+      double discount = pro['discountPercentage']*1.0;
+      totalPrice += (price - price * (discount / 100));
+    }
+    emit(deleteFromCart());
   }
 
   void itemCountChange() {

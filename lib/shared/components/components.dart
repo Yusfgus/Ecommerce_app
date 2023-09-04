@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../modules/CartPage/CartPage.dart';
+import '../Cubit/cubit.dart';
+import '../Cubit/states.dart';
 import '../constants/constants.dart';
 
 double? number = double.tryParse("12.34");
@@ -192,7 +195,7 @@ Widget itemBuilder({
                 child: Column(
                   children: [
                     Text(
-                      "${(price - price * (discount / 100)).toStringAsFixed(1)} \$",
+                      "\$ ${(price - price * (discount / 100)).toStringAsFixed(1)}",
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 13.0,
@@ -202,7 +205,7 @@ Widget itemBuilder({
                       height: 3.0,
                     ),
                     Text(
-                      "${price.toString()} \$",
+                      "\$ ${price.toString()}",
                       style: TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 12.0,
@@ -373,7 +376,9 @@ Widget CustomAppBar({
       child: Padding(
           padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
           child: Center(
-            child: Row(children: [
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
               IconButton(
                   onPressed: isPressed,
                   icon: Icon(Icons.arrow_back_ios_rounded)),
@@ -386,6 +391,7 @@ Widget CustomAppBar({
                     fontWeight: FontWeight.bold,
                     color: textColor),
               )),
+               SizedBox(width: 40,),
             ]),
           )),
     );
@@ -403,25 +409,30 @@ Widget myItems(
         key: Key("gus"),
         onDismissed: (direction) async{
           // from favourite page
+
           if(fav){
             userFavourites.remove(proId);
-            print("favourite Before:\n   " + Data[0]['fav'] + "\n   " + userFavourites.toString());
-            String newFav = Data[0]['fav'];
-            final pattern = RegExp('$proId.');
-            newFav = newFav.replaceAll(pattern, '');
-            print("pattern: $pattern");
-            Data = await sqlDb.updateFav(newFav: newFav);
-            print("favourite After:\n   " + Data[0]['fav'] + "\n   " + userFavourites.toString());
+            print("favourite Before:\n   " + "\n   " + userFavourites.toString());
+            // print("favourite Before:\n   " + Data[0]['fav'] + "\n   " + userFavourites.toString());
+            // String newFav = Data[0]['fav'];
+            // final pattern = RegExp('$proId.');
+            // newFav = newFav.replaceAll(pattern, '');
+            // print("pattern: $pattern");
+            // //Data = await sqlDb.updateFav(newFav: newFav);
+            // print("favourite After:\n   " + Data[0]['fav'] + "\n   " + userFavourites.toString());
+            print("favourite After:\n   " + "\n   " + userFavourites.toString());
           }
           else{
             userCart.remove(proId);
-            print("cart Before: " + Data[0]['cart'] + "\n   " + userCart.toString());
-            String newCart = Data[0]['cart'];
-            final pattern = RegExp('$proId.');
-            newCart = newCart.replaceAll(pattern, '');
-            print("pattern: $pattern");
-            Data = await sqlDb.updateCart(newCart: newCart);
-            print("cart After:\n   " + Data[0]['cart'] + "\n   " + userCart.toString());
+            print("cart Before: " + userCart.toString());
+            // print("cart Before: " + Data[0]['cart'] + "\n   " + userCart.toString());
+            // String newCart = Data[0]['cart'];
+            // final pattern = RegExp('$proId.');
+            // newCart = newCart.replaceAll(pattern, '');
+            // print("pattern: $pattern");
+            //Data = await sqlDb.updateCart(newCart: newCart);
+            //print("cart After:\n   " + Data[0]['cart'] + "\n   " + userCart.toString());
+            print("cart After:\n   " + userCart.toString());
           }
         },
         background: Container(
@@ -439,7 +450,7 @@ Widget myItems(
           ),
         ),
         child: Container(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 7),
           margin: EdgeInsets.only(top: 20, left: 10, right: 10),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
@@ -501,13 +512,13 @@ Widget myItems(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                "\$ ${price - price * (discount / 100)}",
+                                "\$${(price - price * (discount / 100)).toStringAsFixed(1)}",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500),
                               ),
                               Text(
-                                "\$ ${price}",
+                                "\$${price}",
                                 style: TextStyle(
                                   color: Color(0xff7d7d7d),
                                   fontSize: 12,

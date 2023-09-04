@@ -35,6 +35,7 @@ class _RegisterScreenState extends State<LoginScreen> {
           Navigator.of(context).pushNamed('A');
           user = FirebaseAuth.instance.currentUser!;
           username = user.email!;
+          ReadData();
     })
         .catchError((error){
       showAlertDialog(

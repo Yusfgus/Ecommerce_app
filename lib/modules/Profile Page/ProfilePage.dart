@@ -25,7 +25,8 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           CustomAppBar(
               title: "Profile",
-              backcolor: Colors.white,
+              backcolor: Color(0xFFFFBC00),
+              // backcolor: Colors.transparent,
               textColor: Colors.white),
           Container(
             width: 414,
@@ -40,23 +41,23 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Stack(
               //alignment: Alignment.bottomRight,
               children: [
-                Positioned(
-                    top: 5,
-                    left: 15,
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "Yusfgus",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 28,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    )),
+                // Positioned(
+                //     top: 5,
+                //     left: 15,
+                //     child: Row(
+                //       children: [
+                //         SizedBox(
+                //           width: 20,
+                //         ),
+                //         Text(
+                //           "Yusfgus",
+                //           style: TextStyle(
+                //               color: Colors.white,
+                //               fontSize: 28,
+                //               fontWeight: FontWeight.w500),
+                //         ),
+                //       ],
+                //     )),
                 Positioned(
                   bottom: 0,
                   right: 38,

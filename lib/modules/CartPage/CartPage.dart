@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:nemo_app/shared/components/components.dart';
 
+import '../../shared/Cubit/states.dart';
 import '../../shared/constants/constants.dart';
 
 class CartPage extends StatefulWidget {
@@ -10,12 +11,14 @@ class CartPage extends StatefulWidget {
 
   @override
   State<CartPage> createState() => _CartPageState();
+
 }
 
 class _CartPageState extends State<CartPage> {
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool bottomSheet = false;
+  double totalPrice = 0;
 
   @override
   void initState() {
@@ -26,6 +29,12 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
+    for(int i=0; i<userCart.length; ++i){
+      var pro = AppProducts.where((product) => product['id'] == userCart[i]).toList()[0];
+      double price = pro['price']*1.0;
+      double discount = pro['discountPercentage']*1.0;
+      totalPrice += (price - price * (discount / 100));
+    }
     return SafeArea(
         child: Scaffold(
       key: scaffoldKey,
@@ -42,7 +51,7 @@ class _CartPageState extends State<CartPage> {
                 padding: EdgeInsets.all(_w / 200),
                 physics:
                 BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                itemCount: 20,
+                itemCount: userCart.length,
                 itemBuilder: (BuildContext context, int index) {
                   var pro = AppProducts.where(
                           (product) => product['id'] == userCart[index]).toList();
@@ -88,15 +97,16 @@ class _CartPageState extends State<CartPage> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
-                  Expanded(
-                    child: SizedBox(
-                      width: double.maxFinite,
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: SizedBox(
+                  //     width: double.maxFinite,
+                  //   ),
+                  // ),
+                  SizedBox(width: 10,),
                   Padding(
                     padding: const EdgeInsetsDirectional.only(end: 70),
                     child: Text(
-                      "\$ 450",
+                      "\$${totalPrice.toStringAsFixed(1)}",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.amber,
@@ -132,12 +142,13 @@ class _CartPageState extends State<CartPage> {
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
+                              var pro = AppProducts.where((product) => product['id'] == userCart[index]).toList();
                               return Padding(
                                 padding: const EdgeInsets.only(bottom: 15),
                                 child: Row(
                                   children: [
                                     Text(
-                                      "Laptop",
+                                      pro[0]['title'],
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,
@@ -149,11 +160,11 @@ class _CartPageState extends State<CartPage> {
                                       ),
                                     ),
                                     Text(
-                                      "\$ 500",
+                                      "\$${(pro[0]['price'] - pro[0]['price']*(pro[0]['discountPercentage']/100)).toStringAsFixed(1)}",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18),
-                                    )
+                                    ),
                                   ],
                                 ),
                               );
@@ -163,7 +174,7 @@ class _CartPageState extends State<CartPage> {
                                 height: 10,
                               );
                             },
-                            itemCount: 9),
+                            itemCount: userCart.length),
                       ),
                       DottedBorder(
                         dashPattern: [20, 15],
@@ -179,7 +190,7 @@ class _CartPageState extends State<CartPage> {
                                 padding: const EdgeInsetsDirectional.only(
                                     start: 25.0),
                                 child: Text(
-                                  "Total : ",
+                                  "gus : ",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
@@ -194,7 +205,7 @@ class _CartPageState extends State<CartPage> {
                                 padding:
                                     const EdgeInsetsDirectional.only(end: 70),
                                 child: Text(
-                                  "\$ 450",
+                                  "\$${totalPrice.toStringAsFixed(1)}",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.amber,

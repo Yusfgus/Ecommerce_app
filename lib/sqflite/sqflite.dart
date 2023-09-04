@@ -17,7 +17,6 @@ class Sqflite {
   initialDB() async {
     String databasePath = await getDatabasesPath();
     String databaseName = "nemo.db";
-    // database_path/note.db
     String path = join(databasePath, databaseName);
     Database? myDb = await openDatabase(path,
         version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);

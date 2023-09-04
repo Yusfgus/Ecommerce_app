@@ -23,6 +23,10 @@ class AppImageClickedState extends AppStates {}
 
 class AppFavouriteChangeState extends AppStates {}
 
+class inCartChangeState extends AppStates {}
+
+class deleteFromCart extends AppStates {}
+
 class AppItemCountChangeState extends AppStates {}
 
 class AppItemCountConditionState extends AppStates {}

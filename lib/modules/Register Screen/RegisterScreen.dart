@@ -28,10 +28,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
     print(passController.text);
     FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: userController.text.trim(),
-        password: passController.text.trim()).then((value) {
+        password: passController.text.trim()).then((value) async {
           Navigator.of(context).pushNamed('A');
           user = FirebaseAuth.instance.currentUser!;
           username = user.email!;
+          print("new user username : $username");
+          //int respond = await sqlDb.insertNewUser();
+          //print("insert respond: $respond");
+          ReadData();
         })
         .catchError((error){
       Navigator.pushReplacement(context,

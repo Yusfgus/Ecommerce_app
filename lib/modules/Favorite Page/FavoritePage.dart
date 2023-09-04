@@ -27,7 +27,7 @@ class FavoritePage extends StatelessWidget {
                 padding: EdgeInsets.all(_w / 200),
                 physics: BouncingScrollPhysics(
                     parent: NeverScrollableScrollPhysics()),
-                itemCount: 20,
+                itemCount: userFavourites.length,
                 itemBuilder: (BuildContext context, int index) {
                   var pro = AppProducts.where(
                       (product) => product['id'] == userFavourites[index]).toList();
