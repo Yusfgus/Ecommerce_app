@@ -103,13 +103,13 @@ class Sqflite {
   //   );
   // }
 
-  Future<List<Map<String, dynamic>>> updateFav(String newFav) async {
+  Future<List<Map<String, dynamic>>> updateFav({required String newFav}) async {
     Database? myDb = await dB;
     await myDb!.update(tableName, {favColumn: newFav}, where: "username = $username");
     return getUserData();
   }
 
-  Future<List<Map<String, dynamic>>> updateCart(String newCart) async {
+  Future<List<Map<String, dynamic>>> updateCart({required String newCart}) async {
     Database? myDb = await dB;
     await myDb!.update(tableName, {cartColumn: newCart}, where: "username = $username");
     return getUserData();

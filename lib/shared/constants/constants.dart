@@ -6,21 +6,47 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../modules/Login Page/LoginScreen.dart';
+import '../../sqflite/sqflite.dart';
 
-late Map<String, dynamic> myProduct;
+Sqflite sqlDb = Sqflite();
 List<List<dynamic>> Manga = [];
-var userController = TextEditingController();
-var passController = TextEditingController();
-// final user = FirebaseAuth.instance.currentUser!;
+List<Map<String, dynamic>> Data = [];
+List<int> userFavourites = [];
+List<int> userCart = [];
+late final AppProducts;
+late Map<String, dynamic> myProduct;
 late User user;
 String username = "";
 
-// List<dynamic> smartPhonesList = [];
-// List<dynamic> laptopsList = [];
-// List<dynamic> homeDecList = [];
-// List<dynamic> skincareList = [];
-// List<dynamic> fragrancesList = [];
-// List<dynamic> groceriesList = [];
+var userController = TextEditingController();
+var passController = TextEditingController();
+// final user = FirebaseAuth.instance.currentUser!;
+
+
+ReadData() async {
+  print("start reading");
+  Data = await sqlDb.getUserData();
+  print("print user $username Data: $Data");
+  userFavourites = stringToList(Data[0]['fav']);
+  userCart = stringToList(Data[0]['cart']);
+  print("finish reading");
+}
+
+List<int> stringToList(String input) {
+  List<String> parts = input.split('|');
+  List<int> result =[];
+
+  for (String part in parts) {
+    if (part.isNotEmpty) {
+      int? value = int.tryParse(part);
+      if (value != null) {
+        result.add(value);
+      }
+    }
+  }
+
+  return result;
+}
 
 void showAlertDialog({
   required BuildContext context,
@@ -164,19 +190,19 @@ Future<dynamic> getData() async {
   final response = await http.get(Uri.parse('https://dummyjson.com/products'));
   if (response.statusCode == 200) {
     final decodedResponse = json.decode(response.body);
-    final products = decodedResponse['products'];
+    AppProducts = decodedResponse['products'];
 
     Manga = [
-      products
+      AppProducts
           .where((product) => product['category'] == 'smartphones')
           .toList(),
-      products.where((product) => product['category'] == 'laptops').toList(),
-      products
+      AppProducts.where((product) => product['category'] == 'laptops').toList(),
+      AppProducts
           .where((product) => product['category'] == 'home-decoration')
           .toList(),
-      products.where((product) => product['category'] == 'skincare').toList(),
-      products.where((product) => product['category'] == 'fragrances').toList(),
-      products.where((product) => product['category'] == 'groceries').toList(),
+      AppProducts.where((product) => product['category'] == 'skincare').toList(),
+      AppProducts.where((product) => product['category'] == 'fragrances').toList(),
+      AppProducts.where((product) => product['category'] == 'groceries').toList(),
     ];
     return Manga;
   } else {

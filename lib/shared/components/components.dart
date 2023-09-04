@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/constants.dart';
 
 double? number = double.tryParse("12.34");
 
@@ -389,110 +390,148 @@ Widget CustomAppBar({
           )),
     );
 
+
 Widget myItems(
-        {required String imagePath,
-        required String title,
-        required String description,
-        required double price,
-        required double discount}) =>
+    {required int proId,
+      required String imagePath,
+      required String title,
+      required String description,
+      required double price,
+      required double discount,
+      required bool fav}) =>
     Dismissible(
-      key: Key("gus"),
-      child: Container(
-        padding: EdgeInsets.all(15),
-        margin: EdgeInsets.only(top: 20, left: 10, right: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.shade300,
-
-                //color: Color(0xFFEAB96C),
-
-                blurRadius: 10.0,
-                spreadRadius: 2.0,
-                offset: Offset(0, 10),
-              ),
+        key: Key("gus"),
+        onDismissed: (direction) async{
+          // from favourite page
+          if(fav){
+            userFavourites.remove(proId);
+            print("favourite Before:\n   " + Data[0]['fav'] + "\n   " + userFavourites.toString());
+            String newFav = Data[0]['fav'];
+            final pattern = RegExp('$proId.');
+            newFav = newFav.replaceAll(pattern, '');
+            print("pattern: $pattern");
+            Data = await sqlDb.updateFav(newFav: newFav);
+            print("favourite After:\n   " + Data[0]['fav'] + "\n   " + userFavourites.toString());
+          }
+          else{
+            userCart.remove(proId);
+            print("cart Before: " + Data[0]['cart'] + "\n   " + userCart.toString());
+            String newCart = Data[0]['cart'];
+            final pattern = RegExp('$proId.');
+            newCart = newCart.replaceAll(pattern, '');
+            print("pattern: $pattern");
+            Data = await sqlDb.updateCart(newCart: newCart);
+            print("cart After:\n   " + Data[0]['cart'] + "\n   " + userCart.toString());
+          }
+        },
+        background: Container(
+          width: 100,
+          height: 80,
+          padding: EdgeInsets.all(15),
+          margin: EdgeInsets.only(top: 20, left: 10, right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.delete, color: Colors.red, size: 45,),
+              Icon(Icons.delete, color: Colors.red, size: 45,),
             ],
-            color: Colors.white
+          ),
+        ),
+        child: Container(
+          padding: EdgeInsets.all(15),
+          margin: EdgeInsets.only(top: 20, left: 10, right: 10),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  //color: Color(0xFFEAB96C),
+
+                  blurRadius: 10.0,
+                  spreadRadius: 2.0,
+                  offset: Offset(0, 10),
+                ),
+              ],
+              color: Colors.white
             //color: Color(0xFFFDF5D2),
 
             //border: Border.all(color: Colors.black12, width: 2),
-            ),
-        child: Row(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 110,
-              height: 80,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(imagePath),
-                  fit: BoxFit.cover,
+          ),
+          child: Row(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 110,
+                height: 80,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(imagePath),
+                    fit: BoxFit.cover,
+                  ),
+                  color: Colors.green,
                 ),
-                color: Colors.green,
               ),
-            ),
-            SizedBox(
-              width: 12,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          // height: 20,
-                          // width: double.infinity,
-                          // color: Colors.red,
-                          child: Text(
-                            title,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              "\$ ${price - price * (discount / 100)}",
+              SizedBox(
+                width: 12,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            // height: 20,
+                            // width: double.infinity,
+                            // color: Colors.red,
+                            child: Text(
+                              title,
                               style: TextStyle(
                                   color: Colors.black,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w500),
                             ),
-                            Text(
-                              "\$ ${price}",
-                              style: TextStyle(
-                                color: Color(0xff7d7d7d),
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                                decoration: TextDecoration.lineThrough,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                "\$ ${price - price * (discount / 100)}",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500),
                               ),
-                            ),
-                          ],
-                        )
-                      ]),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    description,
-                    style: TextStyle(
-                        color: Color(0xff7d7d7d),
-                        fontSize: 10,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
+                              Text(
+                                "\$ ${price}",
+                                style: TextStyle(
+                                  color: Color(0xff7d7d7d),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                              ),
+                            ],
+                          )
+                        ]),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      description,
+                      style: TextStyle(
+                          color: Color(0xff7d7d7d),
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
-      onDismissed: (direction) {},
+            ],
+          ),
+        )
     );
