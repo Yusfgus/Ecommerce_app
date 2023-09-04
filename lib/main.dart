@@ -5,8 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:nemo_app/modules/FirebaseCheck/Firebase_Auth.dart';
 import 'package:nemo_app/modules/Splash%20screen/SplashScreen.dart';
 import 'package:nemo_app/shared/observer.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() async {
+
+  sqfliteFfiInit();
+  databaseFactory = databaseFactoryFfi;
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 

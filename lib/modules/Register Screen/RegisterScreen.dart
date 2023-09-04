@@ -29,7 +29,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
     FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: userController.text.trim(),
         password: passController.text.trim()).then((value) {
-          Navigator.of(context).pushNamed('A');})
+          Navigator.of(context).pushNamed('A');
+          user = FirebaseAuth.instance.currentUser!;
+          username = user.email!;
+        })
         .catchError((error){
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => RegisterScreen()));

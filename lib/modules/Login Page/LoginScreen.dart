@@ -31,7 +31,12 @@ class _RegisterScreenState extends State<LoginScreen> {
         .signInWithEmailAndPassword(
             email: userController.text.trim(),
             password: passController.text.trim())
-        .then((value) => Navigator.of(context).pushNamed('A')).catchError((error){
+        .then((value) {
+          Navigator.of(context).pushNamed('A');
+          user = FirebaseAuth.instance.currentUser!;
+          username = user.email!;
+    })
+        .catchError((error){
       showAlertDialog(
           context: context,
           label: 'Error Email or Password');

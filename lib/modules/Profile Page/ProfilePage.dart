@@ -17,7 +17,6 @@ class _ProfilePageState extends State<ProfilePage> {
   bool phoneEnable = false;
   // var name = userController.text;
   // var pass = passController.text;
-  var name = user.email;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -79,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
               children: [
                 UserInfo(
                     title: "Name",
-                    value: name!,
+                    value: username,
                     icon: Icons.person_2_outlined,
                     enable: nameEnable),
                 UserInfo(

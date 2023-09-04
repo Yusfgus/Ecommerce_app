@@ -11,7 +11,9 @@ late Map<String, dynamic> myProduct;
 List<List<dynamic>> Manga = [];
 var userController = TextEditingController();
 var passController = TextEditingController();
-final user = FirebaseAuth.instance.currentUser!;
+// final user = FirebaseAuth.instance.currentUser!;
+late User user;
+String username = "";
 
 // List<dynamic> smartPhonesList = [];
 // List<dynamic> laptopsList = [];
