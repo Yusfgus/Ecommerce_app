@@ -100,33 +100,12 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           ),
-          //     Container(
-          //       margin: EdgeInsets.only(bottom: 40),
-          //       width: 345,
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.end,
-          //         children: [
-          //           Container(
-          //             width: 115, // Set the desired width
-          //             height: 35, // Set the desired height
-          //             decoration: BoxDecoration(
-          //               color: Color(0xFFF3B812),
-          //               borderRadius: BorderRadius.circular(42),
-          //             ),
-          //             child: ElevatedButton(
-          //               onPressed: () {
-          //                 // Add your button click logic here
-          //               },
-          //               child: Text('Save Changes', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w500),),
-          //               style: ElevatedButton.styleFrom(
-          //                 primary: Colors.transparent,  // Make the button background transparent
-          //                 elevation: 0,  // Remove button shadow
-          //               ),
-          //           )
-          //       ),
-          // ]
-          //       ),
-          //     ),
+              MaterialButton(
+                  onPressed: () async {
+                    await sqlDb.printDatabase();
+                  },
+                child: Text("Display Database"),
+              )
         ],
       ),
     ));

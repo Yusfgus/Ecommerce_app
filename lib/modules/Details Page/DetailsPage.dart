@@ -276,9 +276,11 @@ class _DetailsPageState extends State<DetailsPage> {
                                               shape: BoxShape.circle,
                                             ),
                                             child:  IconButton(
-                                                onPressed: () {
+                                                onPressed: () async{
                                                   cubit.favorite? userFavourites.remove(myProduct['id']): userFavourites.add(myProduct['id']);
                                                   cubit.favouriteChange();
+                                                  Data = await sqlDb.updateFav(newFav: listToString(userFavourites));
+                                                  print("======================================here=============================");
                                                 },
                                                 icon: cubit.favorite
                                                     ? Icon(
@@ -381,9 +383,11 @@ class _DetailsPageState extends State<DetailsPage> {
                                           color: Colors.amber,
                                         ),
                                         child: MaterialButton(
-                                          onPressed: () {
-                                            cubit.inCart? userCart.remove(myProduct['id']): userCart.add(myProduct['id']);
+                                          onPressed: () async {
+                                            cubit.inCart?
+                                            userCart.remove(myProduct['id']): userCart.add(myProduct['id']);
                                             cubit.inCartChange();
+                                            Data = await sqlDb.updateCart(newCart: listToString(userCart));
                                           },
                                           child: Padding(
                                             padding: const EdgeInsets.all(

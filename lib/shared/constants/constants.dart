@@ -25,14 +25,10 @@ double totalPrice = 0;
 
 ReadData() async {
   print("start reading");
-  //Data = await sqlDb.getUserData();
-  // print("print user $username Data: $Data");
-  // userFavourites = stringToList(Data[0]['fav']);
-  // userCart = stringToList(Data[0]['cart']);
-
-  userFavourites = [1,3,5];
-  userCart = [2,4,5];
-
+  Data = await sqlDb.getUserData();
+  print("print user $username Data: $Data");
+  userFavourites = stringToList(Data[0]['fav']);
+  userCart = stringToList(Data[0]['cart']);
   print("finish reading");
 }
 
@@ -51,6 +47,20 @@ List<int> stringToList(String input) {
 
   return result;
 }
+
+String listToString(List<int> myList)
+{
+  print("====================================================================");
+  String s = "";
+  print("myList: $myList");
+  for(int i=0; i<myList.length; ++i){
+    print(i);
+    s += myList[i].toString() + '|';
+  }
+  print("new List: $s");
+  return s;
+}
+
 
 void showAlertDialog({
   required BuildContext context,

@@ -34,7 +34,7 @@ class _RegisterScreenState extends State<LoginScreen> {
         .then((value) {
           Navigator.of(context).pushNamed('A');
           user = FirebaseAuth.instance.currentUser!;
-          username = user.email!;
+          username = user.email!.split('@')[0];
           ReadData();
     })
         .catchError((error){

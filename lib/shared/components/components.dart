@@ -412,27 +412,11 @@ Widget myItems(
 
           if(fav){
             userFavourites.remove(proId);
-            print("favourite Before:\n   " + "\n   " + userFavourites.toString());
-            // print("favourite Before:\n   " + Data[0]['fav'] + "\n   " + userFavourites.toString());
-            // String newFav = Data[0]['fav'];
-            // final pattern = RegExp('$proId.');
-            // newFav = newFav.replaceAll(pattern, '');
-            // print("pattern: $pattern");
-            // //Data = await sqlDb.updateFav(newFav: newFav);
-            // print("favourite After:\n   " + Data[0]['fav'] + "\n   " + userFavourites.toString());
-            print("favourite After:\n   " + "\n   " + userFavourites.toString());
+            Data = await sqlDb.updateFav(newFav: listToString(userFavourites));
           }
           else{
             userCart.remove(proId);
-            print("cart Before: " + userCart.toString());
-            // print("cart Before: " + Data[0]['cart'] + "\n   " + userCart.toString());
-            // String newCart = Data[0]['cart'];
-            // final pattern = RegExp('$proId.');
-            // newCart = newCart.replaceAll(pattern, '');
-            // print("pattern: $pattern");
-            //Data = await sqlDb.updateCart(newCart: newCart);
-            //print("cart After:\n   " + Data[0]['cart'] + "\n   " + userCart.toString());
-            print("cart After:\n   " + userCart.toString());
+            Data = await sqlDb.updateCart(newCart: listToString(userCart));
           }
         },
         background: Container(

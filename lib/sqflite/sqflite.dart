@@ -15,26 +15,26 @@ class Sqflite {
   }
 
   initialDB() async {
-    String databasePath = await getDatabasesPath();
-    String databaseName = "nemo.db";
-    String path = join(databasePath, databaseName);
-    Database? myDb = await openDatabase(path,
+    // String databasePath = await getDatabasesPath();
+    // String databaseName = "nemo.db";
+    // String path = join(databasePath, databaseName);
+    Database? myDb = await openDatabase('nemo.db',
         version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);
     return myDb;
   }
 
   deleteDB() async {
-    String databasePath = await getDatabasesPath();
-    String databaseName = "nemo.db";
-    // database_path/note.db
-    String path = join(databasePath, databaseName);
-    await deleteDatabase(path);
+    // String databasePath = await getDatabasesPath();
+    // String databaseName = "nemo.db";
+    // // database_path/note.db
+    // String path = join(databasePath, databaseName);
+    await deleteDatabase('nemo.db');
   }
 
   _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE "$tableName"(
-      "id" INTEGER NOT NULL PRIMARY KEY,
+      "username" TEXT NOT NULL PRIMARY KEY,
       $favColumn TEXT,
       $cartColumn TEXT
       )
@@ -52,24 +52,20 @@ class Sqflite {
       $cartColumn TEXT
         )
     ''');
-//
-//     await db.execute('''
-//     INSERT INTO "new_note" ("id","title","description")
-//     SELECT id,title,description FROM "note";
-// ''');
-//
+
     await db.execute('''
-    DROP TABLE "user-fav-cart"
+    INSERT INTO "new_table" ("username",$favColumn,"description")
+    SELECT username,$favColumn,$cartColumn FROM $tableName;
+''');
+
+    await db.execute('''
+    DROP TABLE $tableName
 ''');
 //
     await db.execute('''
     ALTER TABLE "new_table" RENAME TO "$tableName";
 ''');
 
-    // await db.execute('''
-    //  ALTER TABLE note
-    //  DROP color
-    // ''');
     print(
         ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>) TABLE UNDATED (<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 
@@ -87,16 +83,17 @@ class Sqflite {
     return await myDb!.query(
       tableName,
       columns: [favColumn, cartColumn],
-      where: 'username = $username',
-      //whereArgs: [userId], // ميتين chatgpt
+        where: "username = ?",
+        whereArgs: [username],
     );
   }
   //
-  // Future<List<Map<String, dynamic>>?> getUserData(int userId) async {
+  // Future<List<Map<String, dynamic>>?> getUserData() async {
   //   Database? myDb = await dB;
   //   return await myDb!.rawQuery('''
   //     SELECT $favColumn, $cartColumn
   //     FROM $tableName
+  //     where: 'username = $username',
   //     where id = $userId
   //   '''//, [userId]
   //   );
@@ -104,13 +101,14 @@ class Sqflite {
 
   Future<List<Map<String, dynamic>>> updateFav({required String newFav}) async {
     Database? myDb = await dB;
-    await myDb!.update(tableName, {favColumn: newFav}, where: "username = $username");
+    await myDb!.update(tableName, {favColumn: newFav}, where: "username = ?", whereArgs: [username]);
     return getUserData();
   }
 
   Future<List<Map<String, dynamic>>> updateCart({required String newCart}) async {
+    print("--->> " + newCart);
     Database? myDb = await dB;
-    await myDb!.update(tableName, {cartColumn: newCart}, where: "username = $username");
+    await myDb!.update(tableName, {cartColumn: newCart}, where: "username = ?", whereArgs: [username]);
     return getUserData();
   }
 
