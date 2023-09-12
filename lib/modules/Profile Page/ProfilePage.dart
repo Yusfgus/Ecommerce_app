@@ -100,11 +100,21 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           ),
-              MaterialButton(
-                  onPressed: () async {
-                    await sqlDb.printDatabase();
-                  },
-                child: Text("Display Database"),
+              Row(
+                children: [
+                  MaterialButton(
+                      onPressed: () async {
+                        await sqlDb.printDatabase();
+                      },
+                    child: Text("Display Data"),
+                  ),
+                  MaterialButton(
+                      onPressed: () async {
+                        await sqlDb.deleteRows();
+                      },
+                    child: Text("Delete Data"),
+                  ),
+                ],
               )
         ],
       ),

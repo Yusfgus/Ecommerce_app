@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 
 import '../shared/constants/constants.dart';
 
-class Sqflite {
+class sqflite {
   static Database? _db;
   String tableName = "user_fav_cart";
   String favColumn = "fav";
@@ -126,6 +126,16 @@ class Sqflite {
     for (var row in result) {
       print('Row: $row');
     }
+  }
+
+  Future<bool> doesUserExist() async {
+    Database? myDb = await dB;
+    final result = await myDb?.rawQuery('SELECT COUNT(*) FROM $tableName WHERE username = ?', [username],);
+    print("result: $result");
+    // final count = result!.length;
+    final count = Sqflite.firstIntValue(result!);
+    print("count: $count");
+    return count! > 0;
   }
 
 }

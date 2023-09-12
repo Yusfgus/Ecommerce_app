@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import '../../modules/Login Page/LoginScreen.dart';
 import '../../sqflite/sqflite.dart';
 
-Sqflite sqlDb = Sqflite();
+sqflite sqlDb = sqflite();
 List<List<dynamic>> Manga = [];
 List<Map<String, dynamic>> Data = [];
 List<int> userFavourites = [];
@@ -24,6 +24,11 @@ var passController = TextEditingController();
 double totalPrice = 0;
 
 ReadData() async {
+  if(await sqlDb.doesUserExist() == false)
+  {
+    print("user not found");
+    await sqlDb.insertNewUser();
+  }
   print("start reading");
   Data = await sqlDb.getUserData();
   print("print user $username Data: $Data");
