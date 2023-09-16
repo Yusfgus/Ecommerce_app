@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:nemo_app/modules/Login%20Page/LoginScreen.dart';
 import 'package:nemo_app/modules/Register%20Screen/RegisterScreen.dart';
@@ -53,16 +51,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xFFFDEBB9), //F3B812
-                  borderRadius: BorderRadius.circular(40.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0xFF020202).withOpacity(1.0),
-                      spreadRadius: 3,
-                      blurRadius: 12,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+                  // color: Color(0xFFFDEBB9), //F3B812
+                  color: Colors.white,
+                  // borderRadius: BorderRadius.circular(40.0),
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Color(0xFF020202).withOpacity(1.0),
+                  //     spreadRadius: 3,
+                  //     blurRadius: 12,
+                  //     offset: const Offset(0, 3),
+                  //   ),
+                  // ],
                 ),
                 child: Column(
                   children: [
@@ -87,7 +86,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                 'Nemo',
                                 style: TextStyle(
                                   // fontWeight: FontWeight.bold,
-                                  color: Color(0xFF3A2A08),
+                                  // color: Color(0xFF3A2A08),
+                                  color: Colors.black,
                                   fontSize: 70.0,
                                   fontFamily: 'LilitaOne',
                                   fontStyle: FontStyle.italic,
@@ -144,16 +144,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xFFF6F0D8), //F3B812
-                  borderRadius: BorderRadius.circular(40.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0xFF020202).withOpacity(1.0),
-                      spreadRadius: 3,
-                      blurRadius: 12,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+                  // color: Color(0xFFF6F0D8), //F3B812
+                  color: Colors.white,
+                  // borderRadius: BorderRadius.circular(40.0),
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Color(0xFF020202).withOpacity(1.0),
+                  //     spreadRadius: 3,
+                  //     blurRadius: 12,
+                  //     offset: const Offset(0, 3),
+                  //   ),
+                  // ],
                 ),
                 child: Column(
                   children: [

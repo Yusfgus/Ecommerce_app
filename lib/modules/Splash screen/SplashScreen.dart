@@ -1,9 +1,6 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
-
-import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:nemo_app/modules/Login%20Page/LoginScreen.dart';
 import 'package:nemo_app/modules/welcome%20Screen/WelcomeScreen.dart';
 
@@ -75,16 +72,16 @@ class _SecondPageState extends State<SplashScreen> {
           width: _w,
           height: _h,
           decoration: BoxDecoration(
-            color: Color(0xFFFAB829), //F3B812
-            borderRadius: BorderRadius.circular(50.0),
-            boxShadow: [
-              BoxShadow(
-                color: Color(0xFF020202).withOpacity(1.0),
-                spreadRadius: 3,
-                blurRadius: 12,
-                offset: const Offset(0, 3),
-              ),
-            ],
+            color: Color(0xFFFFB929), //F3B812
+            // borderRadius: BorderRadius.circular(50.0),
+            // boxShadow: [
+            //   BoxShadow(
+            //     color: Color(0xFF020202).withOpacity(1.0),
+            //     spreadRadius: 3,
+            //     blurRadius: 12,
+            //     offset: const Offset(0, 3),
+            //   ),
+            // ],
           ),
           child: Column(
             children: [
@@ -118,27 +115,40 @@ class _SecondPageState extends State<SplashScreen> {
                         ? 200
                         : 20,
                 decoration: BoxDecoration(
-                    color: _b ? Colors.white : Colors.transparent,
+                    //color: _b ? Colors.white : Colors.transparent,
 // shape: _c? BoxShape.rectangle : BoxShape.circle,
                     borderRadius:
                         _d ? BorderRadius.only() : BorderRadius.circular(30)),
                 child: Center(
                   child: _e
-                      ? AnimatedTextKit(
-                          totalRepeatCount: 1,
-                          animatedTexts: [
-                            FadeAnimatedText(
-                              'Nemo',
-                              duration: Duration(milliseconds: 1700),
-                              textStyle: TextStyle(
-                                // fontWeight: FontWeight.bold,
-                                color: Color(0xFF49340A),
-                                fontSize: 65.0,
-                                fontFamily: 'LilitaOne',
-                                fontStyle: FontStyle.italic,
-                              ),
+                      ? AnimatedContainer(
+                          duration: Duration(microseconds: 50),
+
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/NemoLogo.png'),
+                              // Replace with your image path
+                              fit: BoxFit
+                                  .fitWidth, // Adjust the image fit based on your needs
                             ),
-                          ],
+                          ),
+
+                          //child: Image.asset("assets/NemoLogo.png"),
+                          // totalRepeatCount: 1,
+                          // child : animatedTexts: [
+                          //   FadeAnimatedText(
+                          //     'Nemo',
+                          //     duration: Duration(milliseconds: 1700),
+                          //     textStyle: TextStyle(
+                          //       // fontWeight: FontWeight.bold,
+                          //       // color: Color(0xFF49340A),
+                          //       color: Colors.white,
+                          //       fontSize: 65.0,
+                          //       fontFamily: 'LilitaOne',
+                          //       fontStyle: FontStyle.italic,
+                          //     ),
+                          //   ),
+                          // ],
                         )
                       : SizedBox(),
                 ),
